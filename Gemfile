@@ -6,6 +6,12 @@ ruby '2.6.5'
 gem 'devise'
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
+gem 'bulma-rails', '~> 0.8.2'
+gem 'better_errors', '~> 2.7', '>= 2.7.1'
+gem 'simple_form', '~> 5.0', '>= 5.0.2'
+gem 'image_processing'
+gem "aws-sdk-s3"
+gem "figaro"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
