@@ -87,6 +87,13 @@ body {
   }
 }
 
+.person-image {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
 .border-prime {
   border-color: $dark-prime-color !important;
 }
@@ -100,8 +107,16 @@ body {
   color: $sidebar-text-color;
 }
 
+.text-base {
+  color: $base-color;
+}
+
 .text-second {
   color: $second-color;
+}
+
+.bg-home {
+  background-color: #f5f6f8;
 }
 
 .text-darkblue {
@@ -140,4 +155,9 @@ body {
 
 .navbar {
   background-color: $base-color;
+  height: 56px;
+}
+
+.inside-vh {
+  height: calc(100vh - 56px);
 }
