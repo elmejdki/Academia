@@ -25,6 +25,11 @@ $dark-prime-color: #1f203466;
 
 body {
   position: relative;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
 }
 
 .notification {
@@ -43,8 +48,8 @@ body {
   #close-notification {
     position: absolute;
     right: 10px;
-    padding: 4px 9px;
-    top: calc(17px - 10px);
+    padding: 1px 6px;
+    top: calc(17px - 8px);
     border-radius: 50%;
     background-color: $dark-prime-color;
     cursor: pointer;
@@ -78,13 +83,13 @@ body {
 .current-user {
   height: 90px;
   padding: 20px 10px;
+}
 
-  .user-image {
-    height: 50px;
-    width: 50px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
+.user-image {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .person-image {
@@ -160,4 +165,16 @@ body {
 
 .inside-vh {
   height: calc(100vh - 56px);
+}
+
+.post-form {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+.scroll-y {
+  overflow-y: scroll;
 }

@@ -13,6 +13,10 @@ class User < ApplicationRecord
 
   has_many :followings, class_name: 'Following', foreign_key: 'follower_id'
 
+  def followings_and_own_posts
+    Post.where(author: followings).or(Post.where(author: self)).order(created_at: :desc)
+  end
+
   def follower?(user)
     self.followers.where(follower_id: user.id).count > 0
   end
@@ -22,7 +26,7 @@ class User < ApplicationRecord
   end
 
   def out_users
-    User.all.filter{ |user| !self.following?(user) && self != user }
+    User.all.order(created_at: :desc).filter{ |user| !self.following?(user) && self != user }
   end
 
   def followed_by
