@@ -14,4 +14,130 @@
  *= require_self
  */
 
- @import "bootstrap";
+@import "bootstrap";
+
+$notification-color: rgba(4, 184, 79, 0.863);
+$base-color: #4e9ad6;
+$second-color: #213246;
+$sidebar-text-color: #405366;
+$alert-color: rgba(219, 37, 52, 0.904);
+$dark-prime-color: #1f203466;
+
+body {
+  position: relative;
+}
+
+.notification {
+  position: fixed;
+  top: 81px;
+  left: calc(100% / 2 - 200px);
+  width: 400px;
+  padding: 10px 15px;
+  color: white;
+  font-size: 14px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: $notification-color;
+  z-index: 100;
+
+  #close-notification {
+    position: absolute;
+    right: 10px;
+    padding: 4px 9px;
+    top: calc(17px - 10px);
+    border-radius: 50%;
+    background-color: $dark-prime-color;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #1f203432;
+    }
+  }
+}
+
+.alert {
+  background-color: $alert-color;
+}
+
+.vh-height {
+  height: 100vh;
+}
+
+.bg-second-color {
+  background-color: $second-color;
+}
+
+.bg-base-color {
+  background-color: $base-color;
+}
+
+.sidbar-size {
+  width: 250px;
+}
+
+.current-user {
+  height: 90px;
+  padding: 20px 10px;
+
+  .user-image {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+}
+
+.border-prime {
+  border-color: $dark-prime-color !important;
+}
+
+
+.small-font {
+  font-size: 14px;
+}
+
+.prime-color {
+  color: $sidebar-text-color;
+}
+
+.text-second {
+  color: $second-color;
+}
+
+.text-darkblue {
+  color: #376e9a;
+  
+  &:hover {
+    color: white;
+  }
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  .menu-item {
+    padding: 10px 20px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $sidebar-text-color;
+      color: white;
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .active {
+    background-color: $base-color;
+    color: white;
+  }
+}
+
+.navbar {
+  background-color: $base-color;
+}

@@ -7,12 +7,88 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css' %>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
-    <%= yield %>
+    <% if notice || alert %>
+      <div class="notification <%= 'alert' if alert %>">
+        <%= notice if notice %>
+        <%= alert if alert %>
+        <div id="close-notification">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+    <% end %>
+    <div class="container-fluid">
+      <div class="row">
+        <% if user_signed_in? %>
+          <div class='sidbar-size vh-height bg-second-color'>
+            <div class="current-user w-100 d-flex align-items-center">
+              <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar, class: 'user-image' %>
+              <% end %>
+              <div class="small-font text-uppercase font-weight-bold prime-color pl-2">
+                <%= current_user.fullname %>
+              </div>
+            </div>
+            <div class="d-flex">
+              <div class="d-flex justify-content-center flex-column align-items-center w-50 p-1 py-3 border-prime border-top border-right bottom-bottom">
+                <span class="text-white"><%= current_user.followings.count %></span>
+                <span class="prime-color font-weight-bold small-font">Followings</span>
+              </div>
+              <div class="d-flex justify-content-center flex-column align-items-center w-50 p-1 py-3 border-prime border-top bottom-bottom">
+                <span class="text-white"><%= current_user.followers.count %></span>
+                <span class="prime-color font-weight-bold small-font">Followers</span>
+              </div>
+            </div>
+            <ul class="menu-list w-100">
+              <li class="menu-item active text-uppercase font-weight-bold prime-color w-100">
+                <i class="fas fa-home"></i> Home
+              </li>
+              <li class="menu-item text-uppercase font-weight-bold prime-color w-100">
+                <i class="fas fa-hashtag"></i> Connect
+              </li>
+              <li class="menu-item text-uppercase font-weight-bold prime-color w-100">
+                <i class="fas fa-envelope"></i> Messages
+              </li>
+              <li class="menu-item text-uppercase font-weight-bold prime-color w-100">
+                <i class="fas fa-user"></i> Profile
+              </li>
+              <li class="menu-item text-uppercase font-weight-bold prime-color w-100">
+                <%= link_to destroy_user_session_path, class: 'd-flex  align-items-center w-100 h-100 prime-color', method: :delete do %>
+                  <i class="fas fa-sign-out-alt"></i> Sign Out
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+        <div class="col p-0">
+          <nav class="navbar d-flex justify-content-between p-3">
+            <div class="">
+              <%= link_to root_path, class: 'text-white' do %>
+                <i class="fas fa-graduation-cap"></i>
+              <% end %>
+            </div>
+            <div class="">
+              <%= link_to root_path, class: 'px-3 py-2 text-darkblue text-decoration-none' do %>
+                <i class="fas fa-pen"></i>
+              <% end %>
+              <%= link_to root_path, class: 'px-3 py-2 text-darkblue text-decoration-none' do %>
+                <i class="fas fa-search"></i>
+              <% end %>
+              <%= link_to root_path, class: 'px-3 py-2 text-darkblue text-decoration-none' do %>
+                <i class="fas fa-envelope"></i>
+              <% end %>
+              <%= link_to root_path, class: 'px-3 py-2 text-darkblue text-decoration-none' do %>
+                <i class="fas fa-cog"></i>
+              <% end %>
+            </div>
+          </nav>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

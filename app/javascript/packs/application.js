@@ -18,3 +18,15 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+document.addEventListener('turbolinks:load', () => {
+  const notification_closer = document.getElementById('close-notification');
+
+  if(notification_closer) {
+    notification_closer.addEventListener('click', (e) => {
+      if (e.target.classList.contains('fas')) {
+        e.target.parentElement.parentElement.style.display = 'none';
+      }
+    })
+  }
+});
