@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :followings, class_name: 'Following', foreign_key: 'follower_id'
 
   def followings_and_own_posts
-    Post.where(author: followings).or(Post.where(author: self)).order(created_at: :desc)
+    Post.where(author: followings).or(Post.where(author: self)).includes(:author).order(created_at: :desc)
   end
 
   def follower?(user)
@@ -30,6 +30,6 @@ class User < ApplicationRecord
   end
 
   def followed_by
-    self.followers.limit(1)
+    self.followers.limit(1)[0]
   end
 end

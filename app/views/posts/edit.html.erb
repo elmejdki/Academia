@@ -14,34 +14,5 @@
       </div>
     </div>
   </div>
-  <div class="sidbar-size inside-vh scroll-y who-to-follow border-left">
-    <div class="text-muted d-flex justify-content-between p-3">
-      <div class="font-weight-bold text-uppercase">
-        who to follow
-      </div>
-      <i class="fas fa-sync-alt"></i>
-    </div>
-    <hr class="mx-4 my-2" />
-    <div class="people p-3">
-      <% current_user.out_users.each do |person| %>
-        <div class="person d-flex align-items-center p-2">
-          <% if person.avatar.attached? %>
-            <%= image_tag person.avatar, class: 'person-image rounded-circle' %>
-          <% end %>
-          <div class="pl-2 d-flex flex-column">
-            <span class="font-weight-bold"><%= person.fullname %></span>
-            <% unless person.followed_by.empty? %>
-              <span class="text-muted">Followed by <span class="text-base"><%= person.followed_by[0].fullname %></span></span>
-            <% else %>
-              <span class="text-muted">Be the first follower</span>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-      <div class="text-base small-font">
-        <a href="#" class="text-base text-decoration-none">Popular accounts</a> -
-        <a href="#" class="text-base text-decoration-none">Find Friends</a>
-      </div>
-    </div>
-  </div>
+  <%= render 'side_bar' %>
 </div>

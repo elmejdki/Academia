@@ -1,0 +1,6 @@
+
+<%= link_to user_path(user) do %>
+  <% if user.avatar.attached? %>
+    <%= image_tag user.avatar, class: "user-image" %>
+  <% end %>
+<% end %>

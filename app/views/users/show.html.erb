@@ -1,23 +1,46 @@
 <div class="row">
-  <div class="col inside-vh scroll-y">
-    <div class="mx-4 my-5">
-      <div class="post-form py-3 px-4 mb-5 bg-white">
-        <div class="p-2">
-          <span class="font-weight-bold text-uppercase text-muted">What's in your mind?</span>
-        </div>
-        <%= simple_form_for @post do |f| %>
-          <div class="form-group w-100">
-            <%= f.input_field :text, :as => :string, placeholder: 'Share to help your colleagues...', class: 'w-100 form-control' %>
-          </div>
-        <% end %>
+  <div class="col inside-vh scroll-y p-0">
+    <div class="w-100">
+      <% if @user.cover_picture.attached? %>
+        <%= image_tag @user.cover_picture, class: 'cover-image' %>
+      <% end %>
+    </div>
+    <div class="w-100 d-flex justify-content-start align_items-center bg-white">
+      <div class="text-uppercase px-4 py-3 font-weight-bold border-bottom border-base">
+        posts
       </div>
+      <div class="text-uppercase px-4 py-3 font-weight-bold border-bottom text-muted">
+        Followers
+      </div>
+      <div class="text-uppercase px-4 py-3 font-weight-bold border-bottom text-muted">
+        Following
+      </div>
+    </div>
+    <div class="mx-4 my-5">
+      <% if @user == current_user %>
+        <div class="post-form py-3 px-4 mb-5 bg-white">
+          <div class="p-2">
+            <span class="font-weight-bold text-uppercase text-muted">Share something new</span>
+          </div>
+          <%= simple_form_for @post do |f| %>
+            <div class="form-group w-100">
+              <%= f.input_field :text, :as => :string, placeholder: 'Share to help your colleagues...', class: 'w-100 form-control' %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
       <div class="post-container bg-white">
         <div class="text-uppercase font-weight-bold text-base px-4 py-3">
-          new posts
+          All posts
         </div>
         <hr class="p-0 my-0 mx-4" />
         <div class="py-3 px-4">
-          <% @posts.each do |post| %>
+          <% if @user.posts.empty? %>
+            <div class="text-capitalize text-muted text-center">
+              this profile has no posts
+            </div>
+          <% end %>
+          <% @user.posts.each do |post| %>
             <div class="d-flex w-100 py-3">
               <%= render partial: 'user_image', locals: { user: post.author } %>
               <div class="post-info w-100 pl-2">
@@ -54,5 +77,5 @@
       </div>
     </div>
   </div>
-  <%= render 'side_bar' %>
+  <%= render partial: 'user_info', locals: { user: @user } %>
 </div>
