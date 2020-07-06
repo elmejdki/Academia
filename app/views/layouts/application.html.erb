@@ -58,8 +58,13 @@
                   <i class="fas pr-2 fa-hashtag"></i>Connect
                 <% end %>
               </li>
-              <li class="menu-item text-uppercase font-weight-bold prime-color w-100">
-                <i class="fas pr-2 fa-envelope"></i>Messages
+              <li class="menu-item text-uppercase font-weight-bold w-100 <%= current_class?(rooms_path) %> prime-color">
+                <%= link_to rooms_path, class: "d-flex align-items-center justify-content-between w-100 h-100 prime-color#{current_class?(rooms_path)}" do %>
+                  <div class="">
+                    <i class="fas pr-2 fa-envelope"></i>Messages
+                  </div>
+                  <span class="bg-danger text-white px-2 <%= @unread_messages.nil? || @unread_messages.zero? ? 'd-none' : '' %>" id="new-messages"><%= @unread_messages %></span>
+                <% end %>
               </li>
               <li class="menu-item text-uppercase font-weight-bold w-100 <%= current_class?(user_path(current_user)) %> prime-color">
                 <%= link_to user_path(current_user), class: "d-flex align-items-center w-100 h-100 prime-color#{current_class?(user_path(current_user))}" do %>

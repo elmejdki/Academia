@@ -1,0 +1,10 @@
+<%= form_for message, remote: true do |f| %>
+  <%= f.hidden_field :room_id, value: room.id %>
+  <div class="d-flex w-100 align-items-center">
+    <div class="w-100 pr-1">
+      <%= f.text_field :body, placeholder: 'Enter a message', class:'form-control w-100' %>
+    </div>
+
+    <%= f.submit 'Send', class: 'btn btn-primary' %>
+  </div>
+<% end %>

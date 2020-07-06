@@ -26,6 +26,12 @@ document.addEventListener('turbolinks:load', () => {
   const followers_tab = document.getElementById('followers-tab');
   const heart_buttons = document.getElementsByClassName('fa-heart');
   const comments_container = document.querySelectorAll('.comments-container');
+  const messages_container = document.getElementById('messages');
+
+  if (messages_container) {
+    messages_container.scrollTo(0,
+      document.querySelector("#messages").scrollHeight);
+  }
 
   if (comments_container) {
     Array.prototype.slice.call(comments_container).forEach(container => {

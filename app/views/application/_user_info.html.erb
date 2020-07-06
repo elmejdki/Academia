@@ -24,7 +24,13 @@
         <%= image_tag user.avatar, class: 'profile-image rounded-circle m-3' %>
       <% end %>
       <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
-        <i class="fas fa-bars"></i>
+        <% if current_user == user %>
+          <i class="fas fa-bars"></i>
+        <% else %>
+          <%= link_to init_chat_path, class: 'd-flex justify-content-center align-items-center text-muted follow-button text-decoration-none' do %>
+            <i class="fas fa-comment-dots"></i>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="w-100 d-flex justify-content-center flex-column mb-3">
