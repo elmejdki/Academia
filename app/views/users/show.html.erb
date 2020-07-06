@@ -6,17 +6,17 @@
       <% end %>
     </div>
     <div class="w-100 d-flex justify-content-start align_items-center bg-white">
-      <div class="text-uppercase px-4 py-3 font-weight-bold border-bottom border-base">
+      <div id="posts-tab" class="menu-tab text-uppercase px-4 py-3 font-weight-bold border-base">
         posts
       </div>
-      <div class="text-uppercase px-4 py-3 font-weight-bold border-bottom text-muted">
-        Followers
-      </div>
-      <div class="text-uppercase px-4 py-3 font-weight-bold border-bottom text-muted">
+      <div id="following-tab" class="menu-tab text-uppercase px-4 py-3 font-weight-bold text-muted">
         Following
       </div>
+      <div id="followers-tab" class="menu-tab text-uppercase px-4 py-3 font-weight-bold text-muted">
+        Followers
+      </div>
     </div>
-    <div class="mx-4 my-5">
+    <div id="posts-content" class="d-show mx-4 my-5">
       <% if @user == current_user %>
         <div class="post-form py-3 px-4 mb-5 bg-white">
           <div class="p-2">
@@ -54,11 +54,12 @@
                   <%= post.text %>
                 </div>
                 <div class="w-100 d-flex justify-content-end">
-                  <%= link_to root_path, class: 'px-3 text-base text-decoration-none' do %>
-                    <% if true %>
-                      <span class="text-dark pr-2">1</span><i class="fas fa-heart"></i>
+                  <%= link_to post_react_path(post), method: :post, class: 'px-3 text-base text-decoration-none' do %>
+                    <span class="pr-2"><%= post.likes.count %></span>
+                    <% if post.isliked?(current_user) %>
+                      <i class="fas fa-heart"></i>
                     <% else %>
-                      <span class="text-dark pr-2">0</span><i class="far fa-heart"></i>
+                      <i class="far fa-heart"></i>
                     <% end %>
                   <% end %>
                   <% if current_user == post.author %>
@@ -70,10 +71,122 @@
                     <% end %>
                   <% end %>
                 </div>
+                <%= simple_form_for @comment, url: post_comments_path(post) do |f| %>
+                  <div class="d-flex align-items-baseline w-100 py-3">
+                    <%= render partial: 'user_image', locals: { user: current_user } %>
+                    <div class="form-group w-100 px-3">
+                      <%= f.input_field :text, :as => :string, placeholder: 'Share to help your colleagues...', class: 'w-100 form-control' %>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="w-100 here goes the comments">
+                  <% post.comments.each do |comment| %>
+                    <div class="comment-container w-100">
+                      <div class="w-100 d-flex py-3">
+                        <%= render partial: 'user_image', locals: { user: comment.user } %>
+                        <div class="w-100 pl-2">
+                          <div class="font-weight-bold text-capitalize">
+                            <%= link_to user_path(comment.user), class: 'text-dark text-decoration-none' do %>
+                              <%= comment.user.fullname %>
+                            <% end %>
+                          </div>
+                          <div class="text-muted">
+                            <%= comment.text %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-end pr-4">
+                        <% if current_user == comment.user %>
+                          <%= link_to post_comment_path(post, comment), class: 'text-decoration-none text-base', method: :delete do %>
+                            <i class="fas fa-trash-alt"></i>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
               </div>
             </div>
           <% end %>
         </div>
+      </div>
+    </div>
+    <div id="following-content" class="d-none mx-4 my-5">
+      <% if @user.followings.empty? %>
+        <div class="text-muted text-center">There Is, No Following</div>
+      <% end %>
+      <div class="d-flex flex-wrap">
+        <% @user.followings.each do |follow| %>
+          <div class="f-width d-flex flex-column justify-content-between align-items-center p-4 m-2 bg-white">
+            <div class='d-flex flex-column justify-content-center align-items-center'>
+              <%= link_to user_path(follow.followed) do %>
+                <% if follow.followed.avatar.attached? %>
+                  <%= image_tag follow.followed.avatar, class: 'profile-image rounded-circle mb-2' %>
+                <% end %>
+              <% end %>
+              <%= link_to user_path(follow.followed), class: 'text-decoration-none text-dark' do %>
+                <div class="font-weight-bold text-dark text-uppercase text-center"><%= follow.followed.fullname %></div>
+              <% end %>
+              <div class="text-muted font-small">@<%= follow.followed.username %></div>
+            </div>
+            <div>
+              <% unless follow.followed == current_user %>
+                <% if current_user.following?(follow.followed) %>
+                  <%= link_to following_path(follow.followed), method: :delete, class: 'text-decoration-none' do %>
+                    <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
+                      <i class="fas fa-minus"></i>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <%= link_to followings_path(followed_id: follow.followed), method: :post, class: 'text-decoration-none' do %>
+                    <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
+                      <i class="fas fa-plus"></i>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div id="followers-content" class="d-none mx-4 my-5">
+      <% if @user.followers.empty? %>
+        <div class="text-muted text-center">There Is, No Followers</div>
+      <% end %>
+      <div class="d-flex flex-wrap">
+        <% @user.followers.each do |follow| %>
+          <div class="f-width d-flex flex-column justify-content-between align-items-center p-4 m-2 bg-white">
+            <div class='d-flex flex-column justify-content-center align-items-center'>
+              <%= link_to user_path(follow.follower) do %>
+                <% if follow.follower.avatar.attached? %>
+                  <%= image_tag follow.follower.avatar, class: 'profile-image rounded-circle mb-2' %>
+                <% end %>
+              <% end %>
+              <%= link_to user_path(follow.follower), class: 'text-decoration-none text-dark' do %>
+                <div class="font-weight-bold text-dark text-uppercase text-center"><%= follow.follower.fullname %></div>
+              <% end %>
+              <div class="text-muted font-small">@<%= follow.follower.username %></div>
+            </div>
+            <div>
+              <% unless follow.follower == current_user %>
+                <% if current_user.following?(follow.follower) %>
+                  <%= link_to following_path(follow.follower), method: :delete, class: 'text-decoration-none' do %>
+                    <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
+                      <i class="fas fa-minus"></i>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <%= link_to followings_path(followed_id: follow.follower), method: :post, class: 'text-decoration-none' do %>
+                    <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
+                      <i class="fas fa-plus"></i>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

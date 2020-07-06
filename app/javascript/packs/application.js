@@ -21,12 +21,86 @@ require("channels")
 
 document.addEventListener('turbolinks:load', () => {
   const notification_closer = document.getElementById('close-notification');
+  const posts_tab = document.getElementById('posts-tab');
+  const following_tab = document.getElementById('following-tab');
+  const followers_tab = document.getElementById('followers-tab');
+  const heart_buttons = document.getElementsByClassName('fa-heart');
+  const comments_container = document.querySelectorAll('.comments-container');
 
-  if(notification_closer) {
+  if (comments_container) {
+    Array.prototype.slice.call(comments_container).forEach(container => {
+      const comments = container.querySelectorAll('.comment-container');
+      
+      if (comments) {
+        Array.prototype.slice.call(comments).forEach(comment => {
+          const trash = comment.querySelector('.fa-trash-alt');
+
+          trash.addEventListener('click', (e) => {
+            e.target.parentNode.parentNode.parentNode.remove()
+          })
+        });
+      }
+    });
+  }
+
+  if (notification_closer) {
     notification_closer.addEventListener('click', (e) => {
       if (e.target.classList.contains('fas')) {
         e.target.parentElement.parentElement.style.display = 'none';
       }
     })
+  }
+
+  const switch_content = (new_page_id) => {
+    showed_page = document.querySelector('.d-show');
+    showed_page.classList.remove('d-show');
+    showed_page.classList.add('d-none');
+
+    selected_tab = document.querySelector('.border-base');
+    selected_tab.classList.remove('border-base');
+
+    new_page = document.getElementById(new_page_id);
+    new_page.classList.add('d-show');
+    new_page.classList.remove('d-none');
+  }
+
+  if (posts_tab) {
+    posts_tab.addEventListener('click', (e) => {
+      console.log(e.target);
+      switch_content('posts-content');
+      e.target.classList.add('border-base');
+    })
+  }
+
+  if (following_tab) {
+    following_tab.addEventListener('click', (e) => {
+      switch_content('following-content');
+      e.target.classList.add('border-base');
+    })
+  }
+
+  if (followers_tab) {
+    followers_tab.addEventListener('click', (e) => {
+      switch_content('followers-content');
+      e.target.classList.add('border-base');
+    })
+  }
+
+  if (heart_buttons) {
+    Array.prototype.slice.call(heart_buttons).forEach(like_button => {
+      like_button.addEventListener('click', (e) => {
+        if (e.target.classList.contains('fas')) {
+          number_container = e.target.parentElement.querySelector('span');
+          number_container.innerText = Number(number_container.innerText) - 1;
+          e.target.classList.remove('fas');
+          e.target.classList.add('far');
+        }else {
+          number_container = e.target.parentElement.querySelector('span');
+          number_container.innerText = Number(number_container.innerText) + 1;
+          e.target.classList.remove('far');
+          e.target.classList.add('fas');
+        }
+      });
+    });
   }
 });

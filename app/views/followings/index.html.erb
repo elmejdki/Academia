@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col inside-vh scroll-y">
+    <p class="h2 text-center text-uppercase text-muted pt-3">Expand your connection to the Maximum...</p>
+    <div class="mx-4 my-5">
+      <% if @users.empty? %>
+        <div class="text-muted text-center">Nice you have followed every one, or wait are you the first one to sign up??</div>
+      <% end %>
+      <div class="d-flex flex-wrap">
+        <% @users.each do |user| %>
+          <div class="f-width d-flex flex-column justify-content-between align-items-center p-4 m-2 bg-white">
+            <div class='d-flex flex-column justify-content-center align-items-center'>
+              <%= link_to user_path(user) do %>
+                <% if user.avatar.attached? %>
+                  <%= image_tag user.avatar, class: 'profile-image rounded-circle mb-2' %>
+                <% end %>
+              <% end %>
+              <%= link_to user_path(user), class: 'text-decoration-none text-dark' do %>
+                <div class="font-weight-bold text-dark text-uppercase text-center"><%= user.fullname %></div>
+              <% end %>
+              <div class="text-muted font-small">@<%= user.username %></div>
+            </div>
+            <div>
+              <% unless user == current_user %>
+                <% if current_user.following?(user) %>
+                  <%= link_to following_path(user), method: :delete, class: 'text-decoration-none' do %>
+                    <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
+                      <i class="fas fa-minus"></i>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <%= link_to followings_path(followed_id: user), method: :post, class: 'text-decoration-none' do %>
+                    <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
+                      <i class="fas fa-plus"></i>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= render 'side_bar' %>
+</div>

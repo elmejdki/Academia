@@ -19,7 +19,7 @@
             <span class="font-weight-bold"><%= person.fullname %></span>
           <% end %>
           <% unless person.followed_by.nil? %>
-            <span class="text-muted">Followed by <span class="text-base"><%= person.followed_by[0].fullname %></span></span>
+            <span class="text-muted">Followed by <span class="text-base"><%= person.followed_by.follower.fullname %></span></span>
           <% else %>
             <span class="text-muted">Be the first follower</span>
           <% end %>

@@ -18,7 +18,7 @@
         <hr class="p-0 my-0 mx-4" />
         <div class="py-3 px-4">
           <% @posts.each do |post| %>
-            <div class="d-flex w-100 py-3">
+            <div id='post-<%= post.id %>' class="d-flex w-100 py-3">
               <%= render partial: 'user_image', locals: { user: post.author } %>
               <div class="post-info w-100 pl-2">
                 <div class="d-flex w-100 justify-content-between">
@@ -31,11 +31,12 @@
                   <%= post.text %>
                 </div>
                 <div class="w-100 d-flex justify-content-end">
-                  <%= link_to root_path, class: 'px-3 text-base text-decoration-none' do %>
-                    <% if true %>
-                      <span class="text-dark pr-2">1</span><i class="fas fa-heart"></i>
+                  <%= link_to post_react_path(post), method: :post, class: 'px-3 text-base text-decoration-none' do %>
+                    <span class="pr-2"><%= post.likes.count %></span>
+                    <% if post.isliked?(current_user) %>
+                      <i class="fas fa-heart"></i>
                     <% else %>
-                      <span class="text-dark pr-2">0</span><i class="far fa-heart"></i>
+                      <i class="far fa-heart"></i>
                     <% end %>
                   <% end %>
                   <% if current_user == post.author %>
@@ -45,6 +46,40 @@
                     <%= link_to post_path(post), class: 'px-3 text-base', method: :delete, data: {confirm: "Are you sure?"} do %>
                       <i class="fas fa-trash-alt"></i>
                     <% end %>
+                  <% end %>
+                </div>
+                <%= simple_form_for @comment, url: post_comments_path(post) do |f| %>
+                  <div class="d-flex align-items-baseline w-100 py-3">
+                    <%= render partial: 'user_image', locals: { user: current_user } %>
+                    <div class="form-group w-100 px-3">
+                      <%= f.input_field :text, :as => :string, placeholder: 'Share to help your colleagues...', class: 'w-100 form-control' %>
+                    </div>
+                  </div>
+                <% end %>
+                <div class="w-100 comments-container">
+                  <% post.comments.each do |comment| %>
+                    <div class="comment-container w-100">
+                      <div class="w-100 d-flex py-3">
+                        <%= render partial: 'user_image', locals: { user: comment.user } %>
+                        <div class="w-100 pl-2">
+                          <div class="font-weight-bold text-capitalize">
+                            <%= link_to user_path(comment.user), class: 'text-dark text-decoration-none' do %>
+                              <%= comment.user.fullname %>
+                            <% end %>
+                          </div>
+                          <div class="text-muted">
+                            <%= comment.text %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-end pr-4">
+                        <% if current_user == comment.user %>
+                          <%= link_to post_comment_path(post, comment), class: 'text-decoration-none text-base', method: :delete do %>
+                            <i class="fas fa-trash-alt"></i>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
                   <% end %>
                 </div>
               </div>

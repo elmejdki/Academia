@@ -53,8 +53,10 @@
                   <i class="fas pr-2 fa-home"></i>Home
                 <% end %>
               </li>
-              <li class="menu-item text-uppercase font-weight-bold prime-color w-100">
-                <i class="fas pr-2 fa-hashtag"></i>Connect
+              <li class="menu-item text-uppercase font-weight-bold w-100 <%= current_class?(followings_path) %> prime-color">
+                <%= link_to followings_path, class: "d-flex align-items-center w-100 h-100 prime-color#{current_class?(followings_path)}" do %>
+                  <i class="fas pr-2 fa-hashtag"></i>Connect
+                <% end %>
               </li>
               <li class="menu-item text-uppercase font-weight-bold prime-color w-100">
                 <i class="fas pr-2 fa-envelope"></i>Messages

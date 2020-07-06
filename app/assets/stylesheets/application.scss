@@ -214,3 +214,16 @@ body {
 .border-base {
   border-bottom: 2px solid $base-color !important;
 }
+
+.menu-tab {
+  transition: all .5s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(212, 212, 212, 0.301);
+  }
+}
+
+.f-width {
+  width: 190px;
+}

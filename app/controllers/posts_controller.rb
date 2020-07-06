@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def index
     @posts = current_user.followings_and_own_posts
     @post = Post.new
+    @comment = Comment.new
   end
 
   def create

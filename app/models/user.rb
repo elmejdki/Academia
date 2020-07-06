@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -13,8 +11,15 @@ class User < ApplicationRecord
 
   has_many :followings, class_name: 'Following', foreign_key: 'follower_id'
 
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
+  has_many :messages, dependent: :destroy
+  has_many :rooms, through: :messages
+
   def followings_and_own_posts
-    Post.where(author: followings).or(Post.where(author: self)).includes(:author).order(created_at: :desc)
+    users = followings.map{ |f| f.followed }
+    Post.where(author: users).or(Post.where(author: self)).includes(:author, { comments: :user }, :likes).order(created_at: :desc)
   end
 
   def follower?(user)
@@ -26,10 +31,14 @@ class User < ApplicationRecord
   end
 
   def out_users
+    User.all.order(created_at: :desc).filter{ |user| !self.following?(user) && self != user }[0..10]
+  end
+
+  def all_out_users
     User.all.order(created_at: :desc).filter{ |user| !self.following?(user) && self != user }
   end
 
   def followed_by
-    self.followers.limit(1)[0]
+    self.followers.limit(1).first
   end
 end
