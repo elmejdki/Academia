@@ -2,5 +2,7 @@
 <%= link_to user_path(user) do %>
   <% if user.avatar.attached? %>
     <%= image_tag user.avatar, class: "user-image" %>
+  <% else %>
+    <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: "user-image" %>
   <% end %>
 <% end %>

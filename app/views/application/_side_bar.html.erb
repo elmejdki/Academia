@@ -12,6 +12,8 @@
         <%= link_to user_path(person) do %>
           <% if person.avatar.attached? %>
             <%= image_tag person.avatar, class: 'person-image rounded-circle' %>
+          <% else %>
+            <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'person-image rounded-circle' %>
           <% end %>
         <% end %>
         <div class="pl-2 d-flex flex-column">

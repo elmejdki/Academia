@@ -22,6 +22,8 @@
       <% end %>
       <% if user.avatar.attached? %>
         <%= image_tag user.avatar, class: 'profile-image rounded-circle m-3' %>
+      <% else %>
+        <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'profile-image rounded-circle m-3' %>
       <% end %>
       <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
         <% if current_user == user %>
@@ -86,6 +88,8 @@
           <%= link_to user_path(follow.follower) do %>
             <% if follow.follower.avatar.attached? %>
               <%= image_tag follow.follower.avatar, class: 'person-image rounded-circle' %>
+            <% else %>
+              <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'person-image rounded-circle' %>
             <% end %>
           <% end %>
           <div class="pl-2 d-flex flex-column">

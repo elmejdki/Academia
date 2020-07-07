@@ -12,6 +12,8 @@
           <div id="room-<%= room.id %>" class="w-100 d-flex align-items-center border-bottom py-2 px-3 menu-tab <%= 'active-room' if room == @room %>">
             <% if user.avatar.attached? %>
               <%= image_tag user.avatar, class: 'room-profile-image rounded-circle mr-2' %>
+            <% else %>
+              <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'room-profile-image rounded-circle mr-2' %>
             <% end %>
             <div class="d-flex flex-column">
               <span class="text-dark text-uppercase font-weight-bold"><%= user.fullname %></span>
@@ -32,6 +34,8 @@
         <%= link_to user_path(@room.side_user(current_user)) do %>
           <% if @room.side_user(current_user).avatar.attached? %>
             <%= image_tag @room.side_user(current_user).avatar, class: 'room-profile-image mr-2' %>
+          <% else %>
+            <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'room-profile-image mr-2' %>
           <% end %>
         <% end %>
         <div class="d-flex flex-column justify-content-center">

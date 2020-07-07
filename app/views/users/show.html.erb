@@ -3,6 +3,8 @@
     <div class="w-100">
       <% if @user.cover_picture.attached? %>
         <%= image_tag @user.cover_picture, class: 'cover-image' %>
+      <% else %>
+        <%= image_tag 'https://lh3.googleusercontent.com/proxy/4un-H63iTyTxn4ksBO1eIFlPs9idVtYd35VIuh-8jsaAC9VZ2oBgVlsYB5DoGUtLwJZmSEwgJVXQNSYsktBQHIUyo8vkHLYO6hhDDYuN60PKSPohLBLnLMjgdvdOgG6nrhMkvQtDRLHkcnQbZd8iWnjr0s-OvDd5CHlYshC-_so9z3ciG2dxrMq28LIxSe79vhI', class: 'cover-image' %>
       <% end %>
     </div>
     <div class="w-100 d-flex justify-content-start align_items-center bg-white">
@@ -122,6 +124,8 @@
               <%= link_to user_path(follow.followed) do %>
                 <% if follow.followed.avatar.attached? %>
                   <%= image_tag follow.followed.avatar, class: 'profile-image rounded-circle mb-2' %>
+                <% else %>
+                  <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'profile-image rounded-circle mb-2' %>
                 <% end %>
               <% end %>
               <%= link_to user_path(follow.followed), class: 'text-decoration-none text-dark' do %>
@@ -161,6 +165,8 @@
               <%= link_to user_path(follow.follower) do %>
                 <% if follow.follower.avatar.attached? %>
                   <%= image_tag follow.follower.avatar, class: 'profile-image rounded-circle mb-2' %>
+                <% else %>
+                  <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'profile-image rounded-circle mb-2' %>
                 <% end %>
               <% end %>
               <%= link_to user_path(follow.follower), class: 'text-decoration-none text-dark' do %>
