@@ -27,6 +27,7 @@ document.addEventListener('turbolinks:load', () => {
   const heart_buttons = document.getElementsByClassName('fa-heart');
   const comments_container = document.querySelectorAll('.comments-container');
   const messages_container = document.getElementById('messages');
+  const rooms_links = document.getElementsByClassName('room-linker');
 
   if (messages_container) {
     messages_container.scrollTo(0,
@@ -109,4 +110,17 @@ document.addEventListener('turbolinks:load', () => {
       });
     });
   }
+
+  window.addEventListener('hashchange', () => {
+    location.reload();
+    return false;
+  });
+
+  const reload_page = (e) => {
+    location.hash="num=" + parseInt(Math.random()*100)
+  }
+
+  Array.prototype.slice.call(rooms_links).forEach(room_link => {
+    room_link.addEventListener('click', reload_page);
+  });
 });

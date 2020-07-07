@@ -8,7 +8,7 @@
     <% @rooms.each do |room| %>
       <% user = room.side_user(current_user) %>
       <% if user %>
-        <%= link_to room, class: 'text-decoration-none' do%>
+        <%= link_to room, class: 'text-decoration-none room-linker' do%>
           <div id="room-<%= room.id %>" class="w-100 d-flex align-items-center border-bottom py-2 px-3 menu-tab <%= 'active-room' if room == @room %>">
             <% if user.avatar.attached? %>
               <%= image_tag user.avatar, class: 'room-profile-image rounded-circle mr-2' %>
