@@ -10,6 +10,8 @@ gem 'better_errors', '~> 2.7', '>= 2.7.1'
 gem 'simple_form', '~> 5.0', '>= 5.0.2'
 gem "aws-sdk-s3"
 gem "figaro"
+gem 'redis'
+gem 'hiredis'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'

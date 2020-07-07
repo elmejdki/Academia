@@ -104,6 +104,7 @@ GEM
       thor (>= 0.14.0, < 2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hiredis (0.6.3)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.0)
@@ -172,6 +173,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.1)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -234,12 +236,14 @@ DEPENDENCIES
   byebug
   devise
   figaro
+  hiredis
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
+  redis
   sass-rails (>= 6)
   simple_form (~> 5.0, >= 5.0.2)
   spring
