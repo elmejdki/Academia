@@ -37,8 +37,6 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :amazon
-  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
-  config.action_controller.perform_caching = true
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil

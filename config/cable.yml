@@ -6,5 +6,4 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: Academia_production
+  url: redis://redistogo:04a68d7ff296a961bbff3612364c05ac@pike.redistogo.com:11576/
