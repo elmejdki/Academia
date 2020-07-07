@@ -1,63 +1,75 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row">
+  <div class="col inside-vh scroll-y p-3 page-wrapper">
+    <div class="user-edit-form form">
+      <div class="display-4 font-weight-bold">Edit <%= resource_name.to_s.humanize %></div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        
+        <%= f.text_field :fullname, class:'form-control py-2', autofocus: true, placeholder: 'Full Name',autocomplete: "fullname" %>
+
+        <div class="form-row py-2">
+          <div class="col">
+            <%= f.text_field :username, class: 'form-control', placeholder: 'Username', autocomplete: "username" %>
+          </div>
+          <div class="col">
+            <%= f.text_field :email, class: 'form-control', placeholder: 'Email', autocomplete: "email" %>
+          </div>
+        </div>
+
+        <div class="form-row py-2">
+          <div class="col">
+            <div class="custom-file">
+              <%= f.file_field :avatar, class:'custom-file-input', id: 'customFile' %>
+              <label class="custom-file-label" for="customFile">Avatar</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="custom-file">
+              <%= f.file_field :cover_picture, class:'custom-file-input', id: 'customFile2' %>
+              <label class="custom-file-label" for="customFile2">Cover picture</label>
+            </div>
+          </div>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div class="text-muted">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="form-group">
+          <label for="password-field" class="font-weight-bold">Password</label>
+          <%= f.password_field :password, class: 'form-control', id: 'password-field', autocomplete: "new-password" %>
+          <small id="passwordHelper" class="form-text text-muted">
+            (leave blank if you don't want to change it)
+            <% if @minimum_password_length %>
+              <br />
+              <em><%= @minimum_password_length %> characters minimum</em>
+            <% end %>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, class: 'font-weight-bold', for: 'confirmation' %>
+          <%= f.password_field :password_confirmation, class: 'form-control', id: 'confirmation', autocomplete: "new-password" %>
+        </div>
+
+        <div class="form-group">
+          <label for="password-field2" class="font-weight-bold">Current Password</label>
+          <%= f.password_field :current_password, class: 'form-control', id: 'password-field2', autocomplete: "current-password" %>
+          <small id="passwordHelper" class="form-text text-muted">
+            <i>(we need your current password to confirm your changes)</i>
+          </small>
+        </div>
+
+        <%= f.submit "Update", class: 'btn btn-primary' %>
+      <% end %>
+
+      <div class="font-weight-bold h3 pt-2">Cancel my account</div>
+
+      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %></p>
+
+      <%= link_to "Back", :back, class: 'btn btn-success' %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
-  </div>
-
-  <div class="field">
-    <%= f.label :cover_picture %><br />
-    <%= f.file_field :cover_picture %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :fullname %><br />
-    <%= f.text_field :fullname, autocomplete: "fullname" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+  <%= render partial: 'user_info', locals: { user: current_user } %>
+</div>

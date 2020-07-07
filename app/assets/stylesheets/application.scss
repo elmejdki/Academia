@@ -262,3 +262,25 @@ body {
   background-color: rgb(253, 0, 0);
   box-shadow: 0px 0px 10px -2px black;
 }
+
+.form {
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, .7);
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.user-edit-form {
+  width: 500px;
+}
+
+.login-form {
+  width: 300px;
+}
+
+.page-wrapper {
+  background-image: url(https://source.unsplash.com/random/1650x900);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

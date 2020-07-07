@@ -1,26 +1,28 @@
-<h2>Log in</h2>
+<div class="row">
+  <div class="col d-flex justify-content-end inside-vh scroll-y p-3 page-wrapper">
+    <div class="login-form form">
+      <div class="display-4 font-weight-bold">Log in</div>
+      
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <label for="InputEmail font-weight-bold">Email address</label>
+          <%= f.email_field :email, class:'form-control', id: 'InputEmail', autofocus: true, autocomplete: "email" %>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <div class="form-group">
+          <label for="InputEmail font-weight-bold">Email address</label>
+          <%= f.password_field :password, class:'form-control', id: 'InputEmail', autofocus: true, autocomplete: "current-password" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+        <div class="form-group form-check">
+          <%= f.check_box :remember_me, class: 'form-check-input', id: 'check-box' %>
+          <label class="form-check-label" for="check-box">Remember me</label>
+        </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <%= f.submit "Log in", class: 'btn btn-primary' %>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

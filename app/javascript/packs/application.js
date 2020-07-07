@@ -42,9 +42,11 @@ document.addEventListener('turbolinks:load', () => {
         Array.prototype.slice.call(comments).forEach(comment => {
           const trash = comment.querySelector('.fa-trash-alt');
 
-          trash.addEventListener('click', (e) => {
-            e.target.parentNode.parentNode.parentNode.remove()
-          })
+          if (trash) {
+            trash.addEventListener('click', (e) => {
+              e.target.parentNode.parentNode.parentNode.remove()
+            })
+          }
         });
       }
     });
