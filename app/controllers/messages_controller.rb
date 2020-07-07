@@ -14,11 +14,11 @@ class MessagesController < ApplicationController
                                   message: @message,
                                   user: current_user.id
 
-    # ActionCable.server.broadcast "message_notification_channel",
-    #                               notified_room: @message.room,
-    #                               user: current_user.id,
-    #                               side_user: user.id,
-    #                               dead_rooms: check_if_there_is_new_messages(user)
+    ActionCable.server.broadcast "message_notice_channel",
+                                  notified_room: @message.room,
+                                  user: current_user.id,
+                                  side_user: user.id,
+                                  dead_rooms: check_if_there_is_new_messages(user)
   end
 
   private

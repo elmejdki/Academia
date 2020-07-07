@@ -20,10 +20,10 @@ class RoomsController < ApplicationController
 
       room.update(last_message: message.created_at)
 
-      # ActionCable.server.broadcast "message_notification_channel",
-      #                             notified_room: room,
-      #                             user: current_user.id,
-      #                             side_user: params[:id]
+      ActionCable.server.broadcast "message_notice_channel",
+                                  notified_room: room,
+                                  user: current_user.id,
+                                  side_user: params[:id]
     else
       room = rooms[0]
     end
