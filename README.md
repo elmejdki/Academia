@@ -8,17 +8,17 @@
 
 ## Features
 
-- A user I can sign up and log in using his email and password.
-- A user I can share his own posts on the home page or profile page
-- A user I can remove and edit his own posts
-- A user I can comment on posts
-- A user I can remove his own comments
-- A user I can like and dislike a post
-- A user I can visit his own profile page and other users profile page
-- A user I can see who is following other users, and who is he following also.
-- A user I can follow other users, and also he can be followed by them
-- A user I can contact other users directly using the messages feature
-- A user I can edit his own information
+- A user can sign up and log in using his email and password.
+- A user can share his own posts on the home page or profile page
+- A user can remove and edit his own posts
+- A user can comment on posts
+- A user can remove his own comments
+- A user can like and dislike a post
+- A user can visit his own profile page and other users profile page
+- A user can see who is following other users, and who is he following also.
+- A user can follow other users, and also he can be followed by them
+- A user can contact other users directly using the messages feature
+- A user can edit his own information
 
 
 
