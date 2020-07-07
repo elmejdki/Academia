@@ -104,6 +104,13 @@
                 <%= link_to root_path, class: 'px-3 py-2 text-darkblue text-decoration-none' do %>
                   <i class="fas fa-cog"></i>
                 <% end %>
+              <% else %>
+                <%= link_to new_user_session_path, class: 'px-3 py-2 font-weight-bold text-darkblue text-decoration-none' do %>
+                  Log In
+                <% end %>
+                <%= link_to new_user_registration_path, class: 'px-3 py-2 font-weight-bold text-darkblue text-decoration-none' do %>
+                  Sign Up
+                <% end %>
               <% end %>
             </div>
           </nav>
