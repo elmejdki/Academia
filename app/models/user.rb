@@ -18,27 +18,29 @@ class User < ApplicationRecord
   has_many :rooms, through: :messages
 
   def followings_and_own_posts
-    users = followings.map{ |f| f.followed }
-    Post.where(author: users).or(Post.where(author: self)).includes(:author, { comments: :user }, :likes).order(created_at: :desc)
+    users = followings.map(&:followed)
+    Post.where(author: users).or(Post.where(author: self)).includes(
+      :author, { comments: :user }, :likes
+    ).order(created_at: :desc)
   end
 
   def follower?(user)
-    self.followers.where(follower_id: user.id).count > 0
+    followers.where(follower_id: user.id).count.positive?
   end
 
   def following?(user)
-    self.followings.where(followed_id: user.id).count > 0
+    followings.where(followed_id: user.id).count.positive?
+  end
+  
+  def all_out_users
+    User.all.order(created_at: :desc).filter { |user| !following?(user) && self != user }
   end
 
   def out_users
-    User.all.order(created_at: :desc).filter{ |user| !self.following?(user) && self != user }[0..10]
-  end
-
-  def all_out_users
-    User.all.order(created_at: :desc).filter{ |user| !self.following?(user) && self != user }
+    all_out_users[0..10]
   end
 
   def followed_by
-    self.followers.limit(1).first
+    followers.limit(1).first
   end
 end

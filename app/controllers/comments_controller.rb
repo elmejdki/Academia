@@ -5,11 +5,13 @@ class CommentsController < ApplicationController
 
     comment.save
 
-    ActionCable.server.broadcast "comments_channel",
-                                  comment: comment,
-                                  user: current_user,
-                                  post: comment.post,
-                                  avatar: url_for(current_user.avatar)
+    ActionCable.server.broadcast(
+      'comments_channel',
+      comment: comment,
+      user: current_user,
+      post: comment.post,
+      avatar: url_for(current_user.avatar)
+    )
   end
 
   def destroy

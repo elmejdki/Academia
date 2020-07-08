@@ -29,6 +29,7 @@ body {
   ::-webkit-scrollbar {
     display: none;
   }
+
   -ms-overflow-style: none;
 }
 
@@ -129,7 +130,7 @@ body {
 
 .text-darkblue {
   color: #376e9a;
-  
+
   &:hover {
     color: white;
   }
@@ -221,7 +222,7 @@ body {
 
 .menu-tab {
   position: relative;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
   cursor: pointer;
 
   &:hover {
@@ -260,7 +261,7 @@ body {
   padding: 8px;
   border-radius: 50%;
   background-color: rgb(253, 0, 0);
-  box-shadow: 0px 0px 10px -2px black;
+  box-shadow: 0 0 10px -2px black;
 }
 
 .form {

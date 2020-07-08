@@ -2,7 +2,7 @@ class LikesController < ApplicationController
   def action
     @post = Post.find(params[:post_id])
 
-    unless @post.isliked?(current_user)
+    if !@post.isliked?(current_user)
       like
     else
       dislike

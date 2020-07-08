@@ -5,6 +5,6 @@ class Post < ApplicationRecord
   # has_many_attached :files
 
   def isliked?(user)
-    !self.likes.where(user_id: user.id).empty?
+    !likes.where(user_id: user.id).empty?
   end
 end
