@@ -45,25 +45,25 @@
 
 ## Home page
 
-![image-20200708000106050](/home/zakariae/Desktop/Microverse Projects/Rails Projects/Academia/app/assets/images/home-page.png)
+![image-20200708000106050](app/assets/images/home-page.png)
 
 
 
 ## Profile page
 
-![image-20200708000238060](/home/zakariae/Desktop/Microverse Projects/Rails Projects/Academia/app/assets/images/profile-page.png)
+![image-20200708000238060](app/assets/images/profile-page.png)
 
 
 
 ## Connect page
 
-![image-20200708000620964](/home/zakariae/Desktop/Microverse Projects/Rails Projects/Academia/app/assets/images/connect-page.png)
+![image-20200708000620964](app/assets/images/connect-page.png)
 
 
 
 ## Messages page
 
-![image-20200708000333124](/home/zakariae/Desktop/Microverse Projects/Rails Projects/Academia/app/assets/images/messages-page.png)
+![image-20200708000333124](app/assets/images/messages-page.png)
 
 
 
