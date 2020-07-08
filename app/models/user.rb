@@ -31,7 +31,7 @@ class User < ApplicationRecord
   def following?(user)
     followings.where(followed_id: user.id).count.positive?
   end
-  
+
   def all_out_users
     User.all.order(created_at: :desc).filter { |user| !following?(user) && self != user }
   end
