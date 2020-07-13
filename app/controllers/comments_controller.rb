@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
 
     comment.save
 
+    return unless comment.valid?
+
     ActionCable.server.broadcast(
       'comments_channel',
       comment: comment,
