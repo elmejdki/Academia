@@ -17,6 +17,10 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :rooms, through: :messages
 
+  validates :username, length: { in: 3..20 }, uniqueness: true, presence: true
+  validates :fullname, length: { in: 6..30 }, presence: true
+  validates :email, length: { in: 10..50 }, uniqueness: true, presence: true
+
   def followings_and_own_posts
     users = followings.map(&:followed)
     Post.where(author: users).or(Post.where(author: self)).includes(
