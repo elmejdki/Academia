@@ -85,25 +85,6 @@ body {
   width: 300px;
 }
 
-.current-user {
-  height: 90px;
-  padding: 20px 10px;
-}
-
-.user-image {
-  height: 50px;
-  width: 50px;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-.person-image {
-  height: 50px;
-  width: 50px;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
 .border-prime {
   border-color: $dark-prime-color !important;
 }
@@ -171,18 +152,6 @@ body {
   height: calc(100vh - 56px);
 }
 
-.chat-vh {
-  height: calc(100vh - 56px - 38px - 97px);
-}
-
-.post-form {
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-}
-
 .scroll-y {
   overflow-y: scroll;
 }
@@ -199,59 +168,15 @@ body {
   }
 }
 
-.profile-image {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
-
-.third-width {
-  width: calc(100% / 3);
-}
-
-.cover-image {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  object-position: center;
-}
-
-.border-base {
-  border-bottom: 2px solid $base-color !important;
-}
-
-.menu-tab {
-  position: relative;
-  transition: all 0.5s ease;
-  cursor: pointer;
-
-  &:hover {
-    background-color: rgba(212, 212, 212, 0.445);
-  }
-}
-
-.f-width {
-  width: 168px;
-}
-
-.active-room {
-  border-right: 5px solid $base-color;
-}
-
-.room-profile-image {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  object-position: center;
-}
-
-.message-wrapper {
-  background-color: #e6ecf0;
-}
-
 .bg-base {
   background-color: $base-color;
   color: white;
+}
+
+p.error {
+  color: red;
+  font-size: 11px;
+  margin: 0;
 }
 
 .message-notice {
@@ -262,30 +187,4 @@ body {
   border-radius: 50%;
   background-color: rgb(253, 0, 0);
   box-shadow: 0 0 10px -2px black;
-}
-
-.form {
-  padding: 10px 20px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 10px;
-  height: fit-content;
-}
-
-.user-edit-form {
-  width: 430px;
-}
-
-.password-form {
-  width: 400px;
-}
-
-.login-form {
-  width: 300px;
-}
-
-.page-wrapper {
-  background-image: url(https://source.unsplash.com/random/1650x900);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
