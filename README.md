@@ -100,6 +100,16 @@ rails db:migrate
     secret_access_key: your_secrect_access_key_goes_here
 ```
 
+### Run Tests
+
+To run tests you can easily go to the root of the project and then run the following command:
+
+```
+rspec
+```
+
+You can also add your own test cases on the `/spec` directory.
+
 ### Usage
 
 Start server with:
