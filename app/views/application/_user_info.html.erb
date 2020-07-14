@@ -1,38 +1,10 @@
 <div class="sidbar-size-2 inside-vh scroll-y who-to-follow border-left">
   <div class="user-profile">
     <div class="d-flex justify-content-center align-items-center">
-      <% if user == current_user %>
-        <%= link_to edit_user_registration_path, class: 'text-decoration-none' do %>
-          <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
-            <i class="fas fa-user-edit"></i>
-          </div>
-        <% end %>
-      <% elsif current_user.following?(user) %>
-        <%= link_to following_path(user), method: :delete, class: 'text-decoration-none' do %>
-          <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
-            <i class="fas fa-minus"></i>
-          </div>
-        <% end %>
-      <% else %>
-        <%= link_to followings_path(followed_id: user), method: :post, class: 'text-decoration-none' do %>
-          <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
-            <i class="fas fa-plus"></i>
-          </div>
-        <% end %>
-      <% end %>
-      <% if user.avatar.attached? %>
-        <%= image_tag user.avatar, class: 'profile-image rounded-circle m-3' %>
-      <% else %>
-        <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'profile-image rounded-circle m-3' %>
-      <% end %>
+      <%= render_edit_or_follow_btn(user) %>
+      <%= get_profile_image(user) %>
       <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
-        <% if current_user == user %>
-          <i class="fas fa-bars"></i>
-        <% else %>
-          <%= link_to init_chat_path, class: 'd-flex justify-content-center align-items-center text-muted follow-button text-decoration-none' do %>
-            <i class="fas fa-comment-dots"></i>
-          <% end %>
-        <% end %>
+        <%= get_message_btn(user) %>
       </div>
     </div>
     <div class="w-100 d-flex justify-content-center flex-column mb-3">
@@ -77,61 +49,19 @@
   </div>
   <hr class="m-0 mx-4" />
   <div class="people p-3">
-    <% if user.followers.empty? %>
-      <div class="text-capitalize text-muted text-center">
-        no one is following this guy, be the first one to follow him.
-      </div>
-    <% end %>
+    <%= no_followers_message(user.followers) %>
     <% user.followers.each do |follow| %>
       <div class="d-flex justify-content-between align-items-center">
         <div class="person d-flex align-items-center p-2">
-          <%= link_to user_path(follow.follower) do %>
-            <% if follow.follower.avatar.attached? %>
-              <%= image_tag follow.follower.avatar, class: 'person-image rounded-circle' %>
-            <% else %>
-              <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'person-image rounded-circle' %>
-            <% end %>
-          <% end %>
+          <%= render partial: 'user_rounded_image', locals: { user: follow.follower } %>
           <div class="pl-2 d-flex flex-column">
             <%= link_to user_path(follow.follower), class: 'text-decoration-none text-dark' do %>
               <span class="font-weight-bold"><%= follow.follower.fullname %></span>
             <% end %>
-            <% unless follow.follower.followed_by.nil? %>
-              <% if follow.follower.followed_by.follower == current_user %>
-                <span class="text-muted">Followed by 
-                  <span class="text-base">
-                    You
-                  </span>
-                </span>
-              <% else %>
-                <span class="text-muted">Followed by 
-                  <%= link_to user_path(follow.follower.followed_by.follower) do %>
-                    <span class="text-base">
-                      <%= follow.follower.followed_by.follower.fullname %>
-                    </span>
-                  <% end %>
-                </span>
-              <% end %>
-            <% else %>
-              <span class="text-muted">Be the first follower</span>
-            <% end %>
+            <%= get_user_follower(follow.follower) %>
           </div>
         </div>
-        <% unless follow.follower == current_user %>
-          <% if current_user.following?(follow.follower) %>
-            <%= link_to following_path(follow.follower), method: :delete, class: 'text-decoration-none' do %>
-              <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
-                <i class="fas fa-minus"></i>
-              </div>
-            <% end %>
-          <% else %>
-            <%= link_to followings_path(followed_id: follow.follower), method: :post, class: 'text-decoration-none' do %>
-              <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
-                <i class="fas fa-plus"></i>
-              </div>
-            <% end %>
-          <% end %>
-        <% end %>
+        <%= render_add_or_remove_btn(follow.follower) %>
       </div>
     <% end %>
   </div>

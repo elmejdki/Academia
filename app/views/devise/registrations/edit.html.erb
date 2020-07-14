@@ -4,16 +4,16 @@
       <div class="display-4 font-weight-bold">Edit <%= resource_name.to_s.humanize %></div>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        
         <%= f.text_field :fullname, class:'form-control py-2', autofocus: true, placeholder: 'Full Name',autocomplete: "fullname" %>
 
         <div class="form-row py-2">
           <div class="col">
             <%= f.text_field :username, class: 'form-control', placeholder: 'Username', autocomplete: "username" %>
+            <%= error_action(:username) %>
           </div>
           <div class="col">
             <%= f.text_field :email, class: 'form-control', placeholder: 'Email', autocomplete: "email" %>
+            <%= error_action(:email) %>
           </div>
         </div>
 
@@ -46,11 +46,13 @@
               <em><%= @minimum_password_length %> characters minimum</em>
             <% end %>
           </small>
+          <%= error_action(:password) %>
         </div>
 
         <div class="form-group">
           <%= f.label :password_confirmation, class: 'font-weight-bold', for: 'confirmation' %>
           <%= f.password_field :password_confirmation, class: 'form-control', id: 'confirmation', autocomplete: "new-password" %>
+          <%= error_action(:password_confirmation) %>
         </div>
 
         <div class="form-group">

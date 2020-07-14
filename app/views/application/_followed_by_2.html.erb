@@ -1,0 +1,7 @@
+<span class="text-muted">Followed by 
+  <%= link_to user_path(follower.followed_by.follower) do %>
+    <span class="text-base">
+      <%= follower.followed_by.follower.fullname %>
+    </span>
+  <% end %>
+</span>

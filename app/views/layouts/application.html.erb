@@ -31,11 +31,7 @@
           <div class='sidbar-size vh-height bg-second-color'>
             <div class="current-user w-100 d-flex align-items-center">
               <%= link_to user_path(current_user) do %>
-                <% if current_user.avatar.attached? %>
-                  <%= image_tag current_user.avatar, class: 'user-image' %>
-                <% else %>
-                  <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'user-image' %>
-                <% end %>
+                <%= add_user_image(current_user) %>
               <% end %>
               <%= link_to user_path(current_user), class: 'text-decoration-none' do %>
                 <div class="small-font text-uppercase font-weight-bold prime-color pl-2">

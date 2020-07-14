@@ -1,11 +1,7 @@
 <div class="row">
   <div class="col inside-vh scroll-y p-0">
     <div class="w-100">
-      <% if @user.cover_picture.attached? %>
-        <%= image_tag @user.cover_picture, class: 'cover-image' %>
-      <% else %>
-        <%= image_tag 'https://lh3.googleusercontent.com/proxy/4un-H63iTyTxn4ksBO1eIFlPs9idVtYd35VIuh-8jsaAC9VZ2oBgVlsYB5DoGUtLwJZmSEwgJVXQNSYsktBQHIUyo8vkHLYO6hhDDYuN60PKSPohLBLnLMjgdvdOgG6nrhMkvQtDRLHkcnQbZd8iWnjr0s-OvDd5CHlYshC-_so9z3ciG2dxrMq28LIxSe79vhI', class: 'cover-image' %>
-      <% end %>
+      <%= get_cover_image(@user) %>
     </div>
     <div class="w-100 d-flex justify-content-start align_items-center bg-white">
       <div id="posts-tab" class="menu-tab text-uppercase px-4 py-3 font-weight-bold border-base">
@@ -121,12 +117,8 @@
         <% @user.followings.each do |follow| %>
           <div class="f-width d-flex flex-column justify-content-between align-items-center p-4 m-2 bg-white">
             <div class='d-flex flex-column justify-content-center align-items-center'>
-              <%= link_to user_path(follow.followed) do %>
-                <% if follow.followed.avatar.attached? %>
-                  <%= image_tag follow.followed.avatar, class: 'profile-image rounded-circle mb-2' %>
-                <% else %>
-                  <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'profile-image rounded-circle mb-2' %>
-                <% end %>
+              <%= link_to user_path(follow.followed), class:'mb-2' do %>
+                <%= add_rounded_user_image(follow.followed) %>
               <% end %>
               <%= link_to user_path(follow.followed), class: 'text-decoration-none text-dark' do %>
                 <div class="font-weight-bold text-dark text-uppercase text-center"><%= follow.followed.fullname %></div>
@@ -134,21 +126,7 @@
               <div class="text-muted font-small">@<%= follow.followed.username %></div>
             </div>
             <div>
-              <% unless follow.followed == current_user %>
-                <% if current_user.following?(follow.followed) %>
-                  <%= link_to following_path(follow.followed), method: :delete, class: 'text-decoration-none' do %>
-                    <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
-                      <i class="fas fa-minus"></i>
-                    </div>
-                  <% end %>
-                <% else %>
-                  <%= link_to followings_path(followed_id: follow.followed), method: :post, class: 'text-decoration-none' do %>
-                    <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
-                      <i class="fas fa-plus"></i>
-                    </div>
-                  <% end %>
-                <% end %>
-              <% end %>
+              <%= render_add_or_remove_btn(follow.followed) %>
             </div>
           </div>
         <% end %>
@@ -162,12 +140,8 @@
         <% @user.followers.each do |follow| %>
           <div class="f-width d-flex flex-column justify-content-between align-items-center p-4 m-2 bg-white">
             <div class='d-flex flex-column justify-content-center align-items-center'>
-              <%= link_to user_path(follow.follower) do %>
-                <% if follow.follower.avatar.attached? %>
-                  <%= image_tag follow.follower.avatar, class: 'profile-image rounded-circle mb-2' %>
-                <% else %>
-                  <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'profile-image rounded-circle mb-2' %>
-                <% end %>
+              <%= link_to user_path(follow.follower), class:'mb-2' do %>
+                <%= add_rounded_user_image(follow.follower) %>
               <% end %>
               <%= link_to user_path(follow.follower), class: 'text-decoration-none text-dark' do %>
                 <div class="font-weight-bold text-dark text-uppercase text-center"><%= follow.follower.fullname %></div>
@@ -175,21 +149,7 @@
               <div class="text-muted font-small">@<%= follow.follower.username %></div>
             </div>
             <div>
-              <% unless follow.follower == current_user %>
-                <% if current_user.following?(follow.follower) %>
-                  <%= link_to following_path(follow.follower), method: :delete, class: 'text-decoration-none' do %>
-                    <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
-                      <i class="fas fa-minus"></i>
-                    </div>
-                  <% end %>
-                <% else %>
-                  <%= link_to followings_path(followed_id: follow.follower), method: :post, class: 'text-decoration-none' do %>
-                    <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
-                      <i class="fas fa-plus"></i>
-                    </div>
-                  <% end %>
-                <% end %>
-              <% end %>
+              <%= render_add_or_remove_btn(follow.follower) %>
             </div>
           </div>
         <% end %>

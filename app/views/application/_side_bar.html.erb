@@ -9,22 +9,12 @@
   <div class="people p-3">
     <% current_user.out_users.each do |person| %>
       <div class="person d-flex align-items-center p-2">
-        <%= link_to user_path(person) do %>
-          <% if person.avatar.attached? %>
-            <%= image_tag person.avatar, class: 'person-image rounded-circle' %>
-          <% else %>
-            <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'person-image rounded-circle' %>
-          <% end %>
-        <% end %>
+        <%= render partial: 'user_rounded_image', locals: { user: person } %>
         <div class="pl-2 d-flex flex-column">
           <%= link_to user_path(person), class: 'text-decoration-none text-dark' do %>
             <span class="font-weight-bold"><%= person.fullname %></span>
           <% end %>
-          <% unless person.followed_by.nil? %>
-            <span class="text-muted">Followed by <span class="text-base"><%= person.followed_by.follower.fullname %></span></span>
-          <% else %>
-            <span class="text-muted">Be the first follower</span>
-          <% end %>
+          <%= get_follower(person) %>
         </div>
       </div>
     <% end %>
