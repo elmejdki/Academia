@@ -15,28 +15,26 @@ module ApplicationHelper
 
   def add_rounded_user_image(user)
     if user.avatar.attached?
-      render partial: 'rounded_user_image', locals: {user: user }
+      render partial: 'rounded_user_image', locals: { user: user }
     else
       render partial: 'rounded_user_fake_image'
     end
   end
 
   def get_follower(person)
-    unless person.followed_by.nil?
-      render partial: "followed_by", locals: { user: person }
+    if !person.followed_by.nil?
+      render partial: 'followed_by', locals: { user: person }
     else
-      render "no_follower"
+      render 'no_follower'
     end
   end
 
   def no_followers_message(followers)
-    if followers.empty?
-      render 'no_followers'
-    end
+    render 'no_followers' if followers.empty?
   end
 
   def get_user_follower(follower)
-    unless follower.followed_by.nil?
+    if !follower.followed_by.nil?
       if follower.followed_by.follower == current_user
         render 'me_follower'
       else
@@ -48,12 +46,12 @@ module ApplicationHelper
   end
 
   def render_add_or_remove_btn(follower)
-    unless follower == current_user
-      if current_user.following?(follower)
-        render partial: 'minus_btn', locals: { follower: follower }
-      else
-        render partial: 'plus_btn', locals: { follower: follower }
-      end
+    return if follower == current_user
+
+    if current_user.following?(follower)
+      render partial: 'minus_btn', locals: { follower: follower }
+    else
+      render partial: 'plus_btn', locals: { follower: follower }
     end
   end
 
@@ -80,7 +78,7 @@ module ApplicationHelper
       render 'message_btn'
     end
   end
-  
+
   def get_cover_image(user)
     if user.cover_picture.attached?
       render partial: 'cover_image', locals: { user: user }
