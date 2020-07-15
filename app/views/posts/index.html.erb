@@ -33,20 +33,9 @@
                 <div class="w-100 d-flex justify-content-end">
                   <%= link_to post_react_path(post), method: :post, class: 'px-3 text-base text-decoration-none' do %>
                     <span class="pr-2"><%= post.likes.count %></span>
-                    <% if post.isliked?(current_user) %>
-                      <i class="fas fa-heart"></i>
-                    <% else %>
-                      <i class="far fa-heart"></i>
-                    <% end %>
+                    <%= get_heart(post) %>
                   <% end %>
-                  <% if current_user == post.author %>
-                    <%= link_to edit_post_path(post), class: 'px-3 text-base' do %>
-                      <i class="fas fa-edit"></i>
-                    <% end %>
-                    <%= link_to post_path(post), class: 'px-3 text-base', method: :delete, data: {confirm: "Are you sure?"} do %>
-                      <i class="fas fa-trash-alt"></i>
-                    <% end %>
-                  <% end %>
+                  <%= get_edit_and_remove_btns(post) %>
                 </div>
                 <%= simple_form_for @comment, url: post_comments_path(post) do |f| %>
                   <div class="d-flex align-items-baseline w-100 py-3">
@@ -73,11 +62,7 @@
                         </div>
                       </div>
                       <div class="d-flex justify-content-end pr-4">
-                        <% if current_user == comment.user %>
-                          <%= link_to post_comment_path(post, comment), class: 'text-decoration-none text-base', method: :delete do %>
-                            <i class="fas fa-trash-alt"></i>
-                          <% end %>
-                        <% end %>
+                        <%= get_comment_trash(post, comment) %>
                       </div>
                     </div>
                   <% end %>

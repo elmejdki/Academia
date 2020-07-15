@@ -2,9 +2,7 @@
   <div class="col inside-vh scroll-y">
     <p class="h2 text-center text-uppercase text-muted pt-3">Expand your connection to the Maximum...</p>
     <div class="mx-4 my-5">
-      <% if @users.empty? %>
-        <div class="text-muted text-center">Nice you have followed every one, or wait are you the first one to sign up??</div>
-      <% end %>
+      <%= there_is_no_users? %>
       <div class="d-flex flex-wrap">
         <% @users.each do |user| %>
           <div class="f-width d-flex flex-column justify-content-between align-items-center p-4 m-2 bg-white">
