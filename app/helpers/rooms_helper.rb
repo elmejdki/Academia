@@ -1,33 +1,29 @@
 module RoomsHelper
   def there_is_no_room?
-    if @rooms.empty?
-      render 'no_room'
-    end
+    render 'no_room' if @rooms.empty?
   end
 
   def get_rooms(room)
     user = room.side_user(current_user)
 
-    if user
-      render partial: 'room_link', locals: { room: room, user: user }
-    end
+    render partial: 'room_link', locals: { room: room, user: user } if user
   end
 
-  def get_room_user_image(user, className)
+  def get_room_user_image(user, class_name)
     if user.avatar.attached?
-      render partial: 'room_user_image', locals: { user: user, className: className }
+      render partial: 'room_user_image', locals: { user: user, className: class_name }
     else
-      render partial: 'room_user_fake_image', locals: { className: className }
+      render partial: 'room_user_fake_image', locals: { className: class_name }
     end
   end
 
   def get_message_notice(room)
-    if room.messages.last.user_id != current_user.id && room.messages.last.unread
-      render 'message_notice'
-    end
+    return unless room.messages.last.user_id != current_user.id && room.messages.last.unread
+
+    render 'message_notice'
   end
 
-  def get_room
+  def render_room
     if @room.present?
       render 'message_box'
     else
@@ -36,12 +32,10 @@ module RoomsHelper
   end
 
   def get_message_text(msg, index)
-    unless msg.body == "nil"
-      if index == @message_number
-        render 'message_ruler'
-      end
-     
-      render partial: 'message', locals: { msg: msg }
-    end
+    return if msg.body == 'nil'
+
+    render 'message_ruler' if index == @message_number
+
+    render partial: 'message', locals: { msg: msg }
   end
 end

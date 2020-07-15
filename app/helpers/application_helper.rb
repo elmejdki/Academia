@@ -86,4 +86,16 @@ module ApplicationHelper
       render 'fake_cover_image'
     end
   end
+
+  def render_side_bar
+    render 'left_side_bar' if user_signed_in?
+  end
+
+  def render_top_bar
+    if user_signed_in?
+      render 'navbar_links'
+    else
+      render 'log_in_links'
+    end
+  end
 end

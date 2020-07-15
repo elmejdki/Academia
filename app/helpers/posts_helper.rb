@@ -6,16 +6,16 @@ module PostsHelper
       render 'filled_heart'
     end
   end
-  
+
   def get_edit_and_remove_btns(post)
-    if current_user == post.author
-      render partial: 'edit_remove_btns', locals: { post: post }
-    end
+    return unless current_user == post.author
+
+    render partial: 'edit_remove_btns', locals: { post: post }
   end
 
   def get_comment_trash(post, comment)
-    if current_user == comment.user
-      render partial: 'trash_btn', locals: { post: post, comment: comment }
-    end
+    return unless current_user == comment.user
+
+    render partial: 'trash_btn', locals: { post: post, comment: comment }
   end
 end
