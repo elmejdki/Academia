@@ -1,70 +1,12 @@
 <div class="row">
   <div class="sidbar-size-2 inside-vh scroll-y border-right bg-white">
-    <% if @rooms.empty? %>
-      <div class="text-muted text-capitalize p-4 text-center">
-        you have no chat rooms here, please try to contact users from there profile page click on the message button next to the user image profile to lunch a new chat room.
-      </div>
-    <% end %>
+    <%= there_is_no_room? %>
     <% @rooms.each do |room| %>
-      <% user = room.side_user(current_user) %>
-      <% if user %>
-        <%= link_to room, class: 'text-decoration-none room-linker' do%>
-          <div id="room-<%= room.id %>" class="w-100 d-flex align-items-center border-bottom py-2 px-3 menu-tab <%= 'active-room' if room == @room %>">
-            <% if user.avatar.attached? %>
-              <%= image_tag user.avatar, class: 'room-profile-image rounded-circle mr-2' %>
-            <% else %>
-              <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'room-profile-image rounded-circle mr-2' %>
-            <% end %>
-            <div class="d-flex flex-column">
-              <span class="text-dark text-uppercase font-weight-bold"><%= user.fullname %></span>
-              <span class="text-muted font-small">@<%= user.username %></span>
-            </div>
-            <% if room.messages.last.user_id != current_user.id && room.messages.last.unread %>
-              <div class="message-notice"></div>
-            <% end %>
-          </div>
-        <% end %>
-      <% end %>
+      <%= get_rooms(room) %>
     <% end %>
   </div>
 
   <div class="col inside-vh p-0 d-flex flex-column bg-white">
-    <% if @room.present? %>
-      <div class="messages-header d-flex p-2 border-bottom">
-        <%= link_to user_path(@room.side_user(current_user)) do %>
-          <% if @room.side_user(current_user).avatar.attached? %>
-            <%= image_tag @room.side_user(current_user).avatar, class: 'room-profile-image mr-2' %>
-          <% else %>
-            <%= image_tag 'https://addisonavenuemarketing.com/wp-content/uploads/2016/07/facebook-avatar.jpg', class: 'room-profile-image mr-2' %>
-          <% end %>
-        <% end %>
-        <div class="d-flex flex-column justify-content-center">
-          <div class="h5 text-uppercase font-weight-bold"><%= @room.side_user(current_user).fullname %></div>
-          <span class="text-muted">Active 30m ago</span>
-        </div>
-      </div>
-      <div id="messages" class="d-flex flex-column chat-vh scroll-y mx-2 my-2">
-        <% @messages.each_with_index do |msg, index| %>
-          <% unless msg.body == "nil" %>
-            <% if index == @message_number %>
-              <hr class="m-0 border border-danger" />
-            <% end %>
-            <div class="d-flex flex-column py-2 <%= current_user == msg.user ? 'align-items-end' : 'align-items-start' %>">
-              <div class="message-wrapper px-3 py-1 rounded-pill <%= current_user == msg.user ? 'bg-base' : '' %> ">
-                <%= msg.body %>
-              </div>
-              <div class="text-muted">
-                <%= time_ago_in_words(msg.created_at) %>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="chat-box">
-        <%= render 'messages/form', message: Message.new, room: @room %>
-      </div>
-    <% else %>
-      <span class="p-5 text-muted text-capitalize text-center">Please click on a room, to start a discussing, otherwise if the left side bar is empty go to a user profile that you want to talk to, and say 'hello'</span>
-    <% end %>
+    <%= get_room %>
   </div>
 </div>

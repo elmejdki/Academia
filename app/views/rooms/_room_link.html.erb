@@ -1,0 +1,10 @@
+<%= link_to room, class: 'text-decoration-none room-linker' do%>
+  <div id="room-<%= room.id %>" class="w-100 d-flex align-items-center border-bottom py-2 px-3 menu-tab <%= 'active-room' if room == @room %>">
+    <%= get_room_user_image(user, 'rounded-circle') %>
+    <div class="d-flex flex-column">
+      <span class="text-dark text-uppercase font-weight-bold"><%= user.fullname %></span>
+      <span class="text-muted font-small">@<%= user.username %></span>
+    </div>
+    <%= get_message_notice(room) %>
+  </div>
+<% end %>

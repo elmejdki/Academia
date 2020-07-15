@@ -1,0 +1,17 @@
+<div class="messages-header d-flex p-2 border-bottom">
+  <%= link_to user_path(@room.side_user(current_user)) do %>
+    <%= get_room_user_image(@room.side_user(current_user), '') %>
+  <% end %>
+  <div class="d-flex flex-column justify-content-center">
+    <div class="h5 text-uppercase font-weight-bold"><%= @room.side_user(current_user).fullname %></div>
+    <span class="text-muted">Active 30m ago</span>
+  </div>
+</div>
+<div id="messages" class="d-flex flex-column chat-vh scroll-y mx-2 my-2">
+  <% @messages.each_with_index do |msg, index| %>
+    <%= get_message_text(msg, index) %>
+  <% end %>
+</div>
+<div class="chat-box">
+  <%= render 'messages/form', message: Message.new, room: @room %>
+</div>
