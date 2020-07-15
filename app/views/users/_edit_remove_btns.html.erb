@@ -1,0 +1,6 @@
+<%= link_to edit_post_path(post), class: 'px-3 text-base' do %>
+  <i class="fas fa-edit"></i>
+<% end %>
+<%= link_to post_path(post), class: 'px-3 text-base', method: :delete, data: {confirm: "Are you sure?"} do %>
+  <i class="fas fa-trash-alt"></i>
+<% end %>

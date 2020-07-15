@@ -1,0 +1,10 @@
+<div class="post-form py-3 px-4 mb-5 bg-white">
+  <div class="p-2">
+    <span class="font-weight-bold text-uppercase text-muted">Share something new</span>
+  </div>
+  <%= simple_form_for post do |f| %>
+    <div class="form-group w-100">
+      <%= f.input_field :text, :as => :string, placeholder: 'Share to help your colleagues...', class: 'w-100 form-control' %>
+    </div>
+  <% end %>
+</div>
