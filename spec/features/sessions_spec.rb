@@ -61,8 +61,6 @@ describe 'User sessions' do
       within('.menu-list') do
         expect(page).to have_link('Home')
         expect(page).to have_link('Connect')
-        expect(page).to have_link('Messages')
-        expect(page).to have_link('Profile')
         expect(page).to have_link('Sign Out')
       end
     end
