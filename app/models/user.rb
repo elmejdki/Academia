@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_one_attached :cover_picture
 
   has_many :followers, class_name: 'Following', foreign_key: 'followed_id'
-
   has_many :followings, class_name: 'Following', foreign_key: 'follower_id'
 
   has_many :likes, dependent: :destroy
@@ -37,7 +36,15 @@ class User < ApplicationRecord
   end
 
   def all_out_users
-    User.all.order(created_at: :desc).filter { |user| !following?(user) && self != user }
+    User.find_by_sql("
+      SELECT DISTINCT users.*
+      FROM users
+      WHERE users.id != #{id} AND users.id NOT IN (
+        SELECT followings.followed_id
+        FROM followings
+        WHERE followings.follower_id = #{id}
+      )
+    ")
   end
 
   def out_users

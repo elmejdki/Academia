@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
   def create
     post = Post.find(params[:post_id])
-    comment = post.comments.new(text: params[:comment][:text], user_id: current_user.id)
+    comment = post.comments.new(comment_params)
+    comment.user_id = current_user.id
 
     if comment.save
       ActionCable.server.broadcast(
@@ -23,5 +24,9 @@ class CommentsController < ApplicationController
     else
       redirect_to request.referrer, alert: 'comment wasn\'t desroyed, Server error, please try again'
     end
+  end
+
+  def comment_params
+    params.require(:comment).permit(:text)
   end
 end

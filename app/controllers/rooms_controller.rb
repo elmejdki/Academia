@@ -21,12 +21,10 @@ class RoomsController < ApplicationController
 
         ActionCable.server.broadcast(
           'message_notice_channel',
-          notified_room: room,
-          user: current_user.id,
-          side_user: params[:id]
+          notified_room: room, user: current_user.id, side_user: params[:id]
         )
       else
-        redirect_to request.referrer, alert: 'sorry we couldn\'t initiate the chat cause of a server error please try again.'
+        redirect_to request.referrer, alert: 'sorry we couldn\'t initiate the chat Server error, try again.'
       end
     else
       room = rooms[0]

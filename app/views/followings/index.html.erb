@@ -10,7 +10,7 @@
           <div class="f-width d-flex flex-column justify-content-between align-items-center p-4 m-2 bg-white">
             <div class='d-flex flex-column justify-content-center align-items-center'>
               <%= link_to user_path(user), class: 'mb-2' do %>
-                <%= add_rounded_user_image(user) %>
+                <%= get_profile_image(user) %>
               <% end %>
               <%= link_to user_path(user), class: 'text-decoration-none text-dark' do %>
                 <div class="font-weight-bold text-dark text-uppercase text-center"><%= user.fullname %></div>

@@ -22,7 +22,7 @@ class LikesController < ApplicationController
   def dislike
     like = @post.likes.where(user_id: current_user.id).first
     if like.destroy
-        # I don't want to referesh the page
+      # I don't want to referesh the page
     else
       redirect_to request.referrer, alert: 'reaction wasn\'t taked on account cause of a server error, please try again'
     end
