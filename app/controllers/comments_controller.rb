@@ -3,21 +3,25 @@ class CommentsController < ApplicationController
     post = Post.find(params[:post_id])
     comment = post.comments.new(text: params[:comment][:text], user_id: current_user.id)
 
-    comment.save
-
-    return unless comment.valid?
-
-    ActionCable.server.broadcast(
-      'comments_channel',
-      comment: comment,
-      user: current_user,
-      post: comment.post,
-      avatar: url_for(current_user.avatar)
-    )
+    if comment.save
+      ActionCable.server.broadcast(
+        'comments_channel',
+        comment: comment,
+        user: current_user,
+        post: comment.post,
+        avatar: url_for(current_user.avatar)
+      )
+    else
+      redirect_to request.referrer, alert: 'comment wasn\'t added, Server error, please try again'
+    end
   end
 
   def destroy
     comment = Comment.find(params[:id])
-    comment.destroy
+    if comment.destroy
+      # I don't want to refresh the page
+    else
+      redirect_to request.referrer, alert: 'comment wasn\'t desroyed, Server error, please try again'
+    end
   end
 end

@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.new(post_params)
+    post = current_user.posts.build(post_params)
 
     if post.save
       redirect_to request.referrer, notice: 'post was created successfuly.'
@@ -33,8 +33,11 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
-    post.destroy
-    redirect_to request.referrer, notice: 'post deleted succesfully'
+    if post.destroy
+      redirect_to request.referrer, notice: 'post deleted succesfully'
+    else
+      redirect_to request.referrer, alert: 'Post wasn\'t deleted cause of a server error'
+    end
   end
 
   private

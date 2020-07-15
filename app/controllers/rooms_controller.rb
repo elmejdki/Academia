@@ -13,19 +13,21 @@ class RoomsController < ApplicationController
 
     if rooms.empty?
       room = Room.new
-      room.save
+      if room.save
+        Message.create(user_id: params[:id], room_id: room.id, body: 'nil', unread: false)
+        message = Message.create(user_id: current_user.id, room_id: room.id, body: 'Hi', unread: true)
 
-      Message.create(user_id: params[:id], room_id: room.id, body: 'nil', unread: false)
-      message = Message.create(user_id: current_user.id, room_id: room.id, body: 'Hi', unread: true)
+        room.update(last_message: message.created_at)
 
-      room.update(last_message: message.created_at)
-
-      ActionCable.server.broadcast(
-        'message_notice_channel',
-        notified_room: room,
-        user: current_user.id,
-        side_user: params[:id]
-      )
+        ActionCable.server.broadcast(
+          'message_notice_channel',
+          notified_room: room,
+          user: current_user.id,
+          side_user: params[:id]
+        )
+      else
+        redirect_to request.referrer, alert: 'sorry we couldn\'t initiate the chat cause of a server error please try again.'
+      end
     else
       room = rooms[0]
     end

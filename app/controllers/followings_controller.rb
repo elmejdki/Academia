@@ -17,7 +17,10 @@ class FollowingsController < ApplicationController
 
   def destroy
     following = Following.where(follower: current_user, followed: User.find(params[:id])).first
-    following.destroy
-    redirect_to request.referrer, alert: 'relationship was canceled.'
+    if following.destroy
+      redirect_to request.referrer, alert: 'relationship was canceled.'
+    else
+      redirect_to request.referrer, alert: 'relationship didn\'t change cause of a server error please try again.'
+    end
   end
 end
