@@ -3,8 +3,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :text, length: { minimum: 4 }, uniqueness: true, presence: true
-  # has_many_attached :files
+  validates :text, length: { minimum: 4 }, presence: true
 
   def isliked?(user)
     !likes.where(user_id: user.id).empty?
