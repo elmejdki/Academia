@@ -1,0 +1,26 @@
+<div class="sidbar-size-2 inside-vh scroll-y who-to-follow border-left">
+  <div class="text-muted d-flex justify-content-between p-3 py-4">
+    <div class="font-weight-bold text-uppercase">
+      who to follow
+    </div>
+    <i class="fas fa-sync-alt"></i>
+  </div>
+  <hr class="mx-4 m-0" />
+  <div class="people p-3">
+    <% current_user.out_users.each do |person| %>
+      <div class="person d-flex align-items-center p-2">
+        <%= render partial: 'user_rounded_image', locals: { user: person } %>
+        <div class="pl-2 d-flex flex-column">
+          <%= link_to user_path(person), class: 'text-decoration-none text-dark' do %>
+            <span class="font-weight-bold"><%= person.fullname %></span>
+          <% end %>
+          <%= get_follower(person) %>
+        </div>
+      </div>
+    <% end %>
+    <div class="text-base small-font">
+      <a href="#" class="text-base text-decoration-none">Popular accounts</a> -
+      <a href="#" class="text-base text-decoration-none">Find Friends</a>
+    </div>
+  </div>
+</div>

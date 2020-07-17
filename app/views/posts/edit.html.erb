@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col inside-vh scroll-y">
+    <div class="mx-4 my-5">
+      <div class="post-form py-3 px-4 mb-5 bg-white">
+        <div class="p-2">
+          <span class="font-weight-bold text-uppercase text-muted">you made a mistake? feel free to update :)</span>
+        </div>
+        <%= simple_form_for @post do |f| %>
+          <div class="form-group w-100">
+            <%= f.input_field :text, placeholder: 'Share to help your colleagues...', class: 'w-100 form-control' %>
+          </div>
+          <%= f.button :submit, 'save', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= render 'side_bar' %>
+</div>

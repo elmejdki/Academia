@@ -6,10 +6,34 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="user-id" data-user-id="<%= current_user.try(:id) %>"></div>
+    <div id="room-id" data-room-id="<%= @room.try(:id) %>"></div>
+    <%= render_notification(notice, alert) %>
+    <div class="container-fluid">
+      <div class="row">
+        <%= render_side_bar %>
+        <div class="col p-0">
+          <nav class="navbar d-flex justify-content-between p-3">
+            <div class="">
+              <%= link_to root_path, class: 'text-white' do %>
+                <i class="fas fa-graduation-cap"></i>
+              <% end %>
+            </div>
+            <div class="">
+              <%= render_top_bar %>
+            </div>
+          </nav>
+          <div class="inside-vh container-fluid bg-home">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,0 +1,81 @@
+$base-color: #4e9ad6;
+
+.form {
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.user-edit-form {
+  width: 430px;
+}
+
+.password-form {
+  width: 400px;
+}
+
+.login-form {
+  width: 300px;
+}
+
+.page-wrapper {
+  background-image: url(https://source.unsplash.com/random/1650x900);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.third-width {
+  width: calc(100% / 3);
+}
+
+.cover-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.border-base {
+  border-bottom: 2px solid $base-color !important;
+}
+
+.menu-tab {
+  position: relative;
+  transition: all 0.5s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(212, 212, 212, 0.445);
+  }
+}
+
+.f-width {
+  width: 168px;
+}
+
+.current-user {
+  height: 90px;
+  padding: 20px 10px;
+}
+
+.user-image {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.person-image {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}

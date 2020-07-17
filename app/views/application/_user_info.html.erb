@@ -1,0 +1,68 @@
+<div class="sidbar-size-2 inside-vh scroll-y who-to-follow border-left">
+  <div class="user-profile">
+    <div class="d-flex justify-content-center align-items-center">
+      <%= render_edit_or_follow_btn(user) %>
+      <%= get_profile_image(user) %>
+      <div class="text-muted border-muted border rounded-circle d-flex justify-content-center align-items-center follow-button">
+        <%= get_message_btn(user) %>
+      </div>
+    </div>
+    <div class="w-100 d-flex justify-content-center flex-column mb-3">
+      <div class="text-uppercase text-center font-weight-bold">
+        <%= user.fullname %>
+      </div>
+      <div class="text-muted text-center small-font">
+        @<%= user.username %>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex border-top border-bottom border-muted">
+    <div class="d-flex justify-content-center align-items-center flex-column py-3 third-width">
+      <div class="font-weight-bold">
+        <%= user.posts.count %>
+      </div>
+      <div class="text-capitalize text-muted small-font">
+        tweets
+      </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center flex-column py-3 third-width border-right border-left border-muted">
+      <div class="font-weight-bold">
+        <%= user.followings.count %>
+      </div>
+      <div class="text-capitalize text-muted small-font">
+        following
+      </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center flex-column py-3 third-width">
+      <div class="font-weight-bold">
+        <%= user.followers.count %>
+      </div>
+      <div class="text-capitalize text-muted small-font">
+        followers
+      </div>
+    </div>
+  </div>
+  <div class="text-muted d-flex justify-content-between p-3 py-4">
+    <div class="font-weight-bold text-uppercase">
+      followed by
+    </div>
+  </div>
+  <hr class="m-0 mx-4" />
+  <div class="people p-3">
+    <%= no_followers_message(user.followers) %>
+    <% user.followers.each do |follow| %>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="person d-flex align-items-center p-2">
+          <%= render partial: 'user_rounded_image', locals: { user: follow.follower } %>
+          <div class="pl-2 d-flex flex-column">
+            <%= link_to user_path(follow.follower), class: 'text-decoration-none text-dark' do %>
+              <span class="font-weight-bold"><%= follow.follower.fullname %></span>
+            <% end %>
+            <%= get_user_follower(follow.follower) %>
+          </div>
+        </div>
+        <%= render_add_or_remove_btn(follow.follower) %>
+      </div>
+    <% end %>
+  </div>
+</div>
