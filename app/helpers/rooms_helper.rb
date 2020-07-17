@@ -39,11 +39,11 @@ module RoomsHelper
     render partial: 'message', locals: { msg: msg }
   end
 
-  def is_sender?(msg)
+  def sender?(msg)
     current_user == msg.user ? 'bg-base' : ''
   end
 
-  def is_active_room?(room)
+  def active_room?(room)
     'active-room' if room == @room
   end
 end

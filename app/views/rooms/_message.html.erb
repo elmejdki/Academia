@@ -1,5 +1,5 @@
 <div class="d-flex flex-column py-2 <%= current_user == msg.user ? 'align-items-end' : 'align-items-start' %>">
-  <div class="message-wrapper px-3 py-1 rounded-pill <%= is_sender?(msg) %> ">
+  <div class="message-wrapper px-3 py-1 rounded-pill <%= sender?(msg) %> ">
     <%= msg.body %>
   </div>
   <div class="text-muted">

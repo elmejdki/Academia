@@ -99,7 +99,7 @@ module ApplicationHelper
     end
   end
 
-  def hide_messages_notice(unread) 
+  def hide_messages_notice(unread)
     unread.nil? || unread.zero? ? 'd-none' : ''
   end
 
@@ -108,12 +108,12 @@ module ApplicationHelper
   end
 
   def get_message(message)
-    message if message
+    message
   end
 
   def render_notification(notice, alert)
-    if notice || alert
-      render partial: 'notification', locals: { notice: notice, alert: alert }
-    end
+    return unless notice || alert
+
+    render partial: 'notification', locals: { notice: notice, alert: alert }
   end
 end

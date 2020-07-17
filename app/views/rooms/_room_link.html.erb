@@ -1,5 +1,5 @@
 <%= link_to room, class: 'text-decoration-none room-linker' do%>
-  <div id="room-<%= room.id %>" class="w-100 d-flex align-items-center border-bottom py-2 px-3 menu-tab <%= is_active_room?(room) %>">
+  <div id="room-<%= room.id %>" class="w-100 d-flex align-items-center border-bottom py-2 px-3 menu-tab <%= active_room?(room) %>">
     <%= get_room_user_image(user, 'rounded-circle') %>
     <div class="d-flex flex-column">
       <span class="text-dark text-uppercase font-weight-bold"><%= user.fullname %></span>
