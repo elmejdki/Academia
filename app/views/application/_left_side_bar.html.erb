@@ -35,7 +35,7 @@
         <div class="">
           <i class="fas pr-2 fa-envelope"></i>Messages
         </div>
-        <span class="bg-danger text-white px-2 <%= @unread_messages.nil? || @unread_messages.zero? ? 'd-none' : '' %>" id="new-messages"><%= @unread_messages %></span>
+        <span class="bg-danger text-white px-2 <%= hide_messages_notice(@unread_messages) %>" id="new-messages"><%= @unread_messages %></span>
       <% end %>
     </li>
     <li class="menu-item text-uppercase font-weight-bold w-100 <%= current_class?(user_path(current_user)) %> prime-color">

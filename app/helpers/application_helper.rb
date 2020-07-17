@@ -98,4 +98,22 @@ module ApplicationHelper
       render 'log_in_links'
     end
   end
+
+  def hide_messages_notice(unread) 
+    unread.nil? || unread.zero? ? 'd-none' : ''
+  end
+
+  def get_alert_class(alert)
+    'alert' if alert
+  end
+
+  def get_message(message)
+    message if message
+  end
+
+  def render_notification(notice, alert)
+    if notice || alert
+      render partial: 'notification', locals: { notice: notice, alert: alert }
+    end
+  end
 end

@@ -14,17 +14,7 @@
   <body>
     <div id="user-id" data-user-id="<%= current_user.try(:id) %>"></div>
     <div id="room-id" data-room-id="<%= @room.try(:id) %>"></div>
-
-    <% if notice || alert %>
-      <div class="notification <%= 'alert' if alert %>">
-        <%= notice if notice %>
-        <%= alert if alert %>
-        <div id="close-notification">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>
-    <% end %>
-
+    <%= render_notification(notice, alert) %>
     <div class="container-fluid">
       <div class="row">
         <%= render_side_bar %>
