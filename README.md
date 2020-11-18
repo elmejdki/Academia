@@ -1,8 +1,8 @@
 # Academia
 
-**This is a capstone project required by [Microverse](https://www.microverse.org/), after finishing a big section of a technical curriculum related to Rails, they have choose this project for me to prove my technical knowledge, you can find the requirement [here](https://www.notion.so/Twitter-redesign-f8a8d48453d54d1a949bb0ceab4c8718)**
+**This is a capstone project required by [Microverse](https://www.microverse.org/), after finishing a big section of a technical curriculum related to Rails, they have picked this project for me to prove my technical knowledge, you can find the requirement [here](https://www.notion.so/Twitter-redesign-f8a8d48453d54d1a949bb0ceab4c8718)**
 
-> Academia is the most efficient application that you can add to your school to keep your students updated with you school's news, and prevent them from wasting time on social media platforms, instead of that they can use Academia to contact each other and share the latest news about there class and school, in order to use the platform you will need a proper sign up with an email, avatar and cover picture. when you log in you will get redirected to the home page where you can see your own and your following posts at any moment you can click on a user profile image or name to get redirected to his profile if you want to start a conversation with him you will need to click on the message icon next to his profile image.
+> Academia is the most efficient application that you can add to your school to keep your students up to date with your school's news, and prevent them from wasting time on social media platforms, instead of that they can use Academia to contact each other and share the latest news about there class and school, in order to use the platform you will need a proper sign up with an email, avatar, and a cover picture. when you log in you will get redirected to the home page where you can see your own and your following posts at any moment you can click on a user profile image or name to get redirected to his profile or if you want to start a conversation with him you will need to click on the message icon next to his profile image.
 
 ## Project Presentation Video
 [![Video Screeshot](https://user-images.githubusercontent.com/34653764/86858370-6fc63e80-c0b8-11ea-843d-95dd6d3a7d85.png)](https://www.loom.com/share/d731c98d7a0a4fe198fb9a7a7275ee77)
@@ -90,9 +90,9 @@ rails db:migrate
 
 ## IMPORTANT
 
-**I used S3 AWS service in order to store images. Therefore, I used SECRET KEYS stored in environment variables on my development and production servers.**
+**I used the S3 AWS service in order to store images. Therefore, I used SECRET KEYS stored in environment variables on my development and production servers.**
 
-- So if you have AWS credentials create a file an application.yml file inside config/ and put this your credentials in it like showing bellow:
+- So if you have AWS credentials create a file named `application.yml` inside `config/`, then past in your credentials like showing bellow:
 
 ```ruby
   development:
@@ -124,7 +124,7 @@ Then open `http://localhost:3000/` in your browser
 
 - Allow users to search for each other using a search field in the top navbar
 - Make the website mobile friendly
-- Allow the users to share videos and Photos on there feeds
+- Allow the users to share videos and photos on there feeds
 - Make all of the top navbar links working.
 
 ## Author
