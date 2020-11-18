@@ -120,6 +120,13 @@ rails s
 
 Then open `http://localhost:3000/` in your browser
 
+# Future Features
+
+- Allow users to search for each other using a search field in the top navbar
+- Make the website mobile friendly
+- Allow the users to share videos and Photos on there feeds
+- Make all of the top navbar links working.
+
 ## Author
 
 👤 **Zakariae El Mejdki**
