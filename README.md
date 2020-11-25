@@ -1,8 +1,8 @@
 # Academia
 
-**This is a capstone project required by [Microverse](https://www.microverse.org/), after finishing a big section of a technical curriculum related to Rails, they have picked this project for me to prove my technical knowledge, you can find the requirement [here](https://www.notion.so/Twitter-redesign-f8a8d48453d54d1a949bb0ceab4c8718)**
+**This is a capstone project required by [Microverse](https://www.microverse.org/). After finishing a big section of a technical curriculum related to Rails, they have picked this project for me to prove my technical knowledge, you can find the requirement [here](https://www.notion.so/Twitter-redesign-f8a8d48453d54d1a949bb0ceab4c8718)**
 
-> Academia is the most efficient application that you can add to your school to keep your students up to date with your school's news, and prevent them from wasting time on social media platforms, instead of that they can use Academia to contact each other and share the latest news about there class and school, in order to use the platform you will need a proper sign up with an email, avatar, and a cover picture. when you log in you will get redirected to the home page where you can see your own and your following posts at any moment you can click on a user profile image or name to get redirected to his profile or if you want to start a conversation with him you will need to click on the message icon next to his profile image.
+> Academia is the most efficient application that you can add to your school to keep your students up to date with your school's news and prevent them from wasting time on social media platforms. Instead of that, they can use Academia to contact each other and share the latest news, about there class and school, to use the platform, you will need a proper sign up with an email, avatar, and a cover picture. When you log in, you will get redirected to the home page, where you can see your own and your friend's posts. At any moment, you can click on a user profile image or name to get redirected to his profile, or if you want to start a conversation with him, you will need to click on the message icon next to his profile image.
 
 ## Project Presentation Video
 [![Video Screeshot](https://user-images.githubusercontent.com/34653764/86858370-6fc63e80-c0b8-11ea-843d-95dd6d3a7d85.png)](https://www.loom.com/share/d731c98d7a0a4fe198fb9a7a7275ee77)
@@ -11,16 +11,16 @@
 ## Features
 
 - A user can sign up and log in using his email and password.
-- A user can share his own posts on the home page or profile page
-- A user can remove and edit his own posts
-- A user can comment on posts
-- A user can remove his own comments
-- A user can like and dislike a post
-- A user can visit his own profile page and other users profile page
+- A user can share his posts on the home page or profile page.
+- A user can remove and edit his posts.
+- A user can comment on posts.
+- A user can remove his comments.
+- A user can like and dislike a post.
+- A user can visit his profile page and other users profile page.
 - A user can see who is following other users, and who is he following also.
-- A user can follow other users, and also he can be followed by them
-- A user can contact other users directly using the messages feature
-- A user can edit his own information
+- A user can follow other users, and also he can be followed by them.
+- A user can contact other users directly using the messages feature.
+- A user can edit his information.
 
 
 
