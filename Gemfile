@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.5'
 
 gem 'aws-sdk-s3'
-gem 'better_errors', '~> 2.7', '>= 2.7.1'
+gem 'better_errors', '~> 2.8'
 gem 'bootstrap', '~> 4.5.0'
 gem 'devise'
 gem 'figaro'
