@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.5'
 
 gem 'aws-sdk-s3'
-gem 'better_errors', '~> 2.7', '>= 2.7.1'
+gem 'better_errors', '~> 2.8'
 gem 'bootstrap', '~> 4.5.0'
 gem 'devise'
 gem 'figaro'
@@ -18,7 +18,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 5.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
