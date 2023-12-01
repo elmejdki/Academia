@@ -26,6 +26,7 @@ development:
   database: Academia_development
   username: postgres
   password: postgres
+  host: localhost
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -62,6 +63,7 @@ test:
   database: Academia_test
   username: postgres
   password: postgres
+  host: localhost
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
